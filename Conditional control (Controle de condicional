@@ -1,0 +1,141 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ControleCondicionalDeCodigo
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_executar_Click(object sender, EventArgs e)
+        {
+            //bloco de código é tudo que esta entre uma {}
+            //IF(SE)
+
+            int valor = 2;
+            // um sinal de = é para atribuir valor
+            // dois sinais de == é para que o código veja que se o valor realmente vai ser igual 2
+            if (valor == 2)
+            {
+                label_resultado.Text = "SIM";
+            }
+            //ELSE(SE NÃO)
+            else
+            {
+                label_resultado.Text = "NÃO";
+            }
+
+            //OU PARA FAZER VARIAS OPERAÇÕES "IF"
+
+            int valor = 10;
+            // "else if" é tipo Se não SE e termina no "else"
+            if (valor < 5)
+            {
+                label_resultado.Text = "valor < 5";
+            }
+            else if (valor < 10)
+            {
+                label_resultado.Text = "valor < 10";
+            }
+            else if (valor < 15)
+            {
+                label_resultado.Text = "valor < 15";
+            }
+            else
+            {
+                label_resultado.Text = "Não deu!";
+            }
+
+            //-----------------------------------------------------------
+            //Lembrando If e Else é para verdadeiro ou falso
+            //exemplo se if não for igual a 5(falso) então "else" não é igual (verdadeiro)
+
+            int valor = 2;
+            if (valor > 2)para maior que 
+            if (valor < 2)//para manor que    
+
+            int valor = 2;
+            if (valor >= 2)//para maior que 2 ou igual a 2
+            if (valor <= 2)//para manor que 2 ou igual a 2
+
+            int valor = 2;
+            if (valor != 2)´//para numeros diferente de 2 "!=" signifca diferente
+
+            int valor = 10;
+            if (valor == 20 || valor = 30)//para que o valor seja igual a 20 ou 30
+            // /\ repare que no meio tem "||" issu concatena para como se fosse "OU"
+            // /\ posso colocar varios "||" concatenações no mesmo if para ser analisado
+
+            int valor = 10;
+            if (valor == 10 && (valor + 5) > 13)//para que o valor seja igual a 10 ou maior que 13
+            // && significa "I" vai fazer o seguinte
+            // o valor tem que ser igual a 10 "i" simultaneamente maior que 13 (issu é para veriricar duas operações numa mesma if)
+            // obs tomar cuidado porque se o valor não foi igual a 10 o resto do código não vai ser executado pois esta usando &&
+
+            Label_resultado.Text = "ok";
+
+            //------------------------------------------------------------
+            
+            //• Apertando tab 2x tambem serve para if e else (code snippet)
+            //Switch (escreva Switch e aperte o TAB 2x para ele escrever automatico)
+            //Case = significa "No caso de" ou "caso o valor seja" exemplo "No caso d"e o valor ser 10
+            //Break = para finalizar o switch 
+            //Diferente do IF e ELSE (verdadeiro ou falso)o switch é para verficiar o valor ou os "casos"
+            //Default = significa que se nenhum dos cases tiver o valor correto ele vai finalizar com uma mensagem. 
+
+            int valor = 10;
+
+            switch (valor)
+            {
+                case 10:
+                    label_resultado.Text = "priemria opção";
+                    break;
+                case 20:
+                    label_resultado.Text = "segunda opção";
+                    break;
+
+                default:
+                    label_resultado.Text = "nenhum resultado";
+                    break;
+                    
+
+            }
+
+            //--------------------------------------------------------------
+
+            //operador ternário(escrever o código em apenas 1 linha)
+
+            int valor = 10;
+
+            if (valor == 10)
+            {
+                label_resultado.Text = "SIM";
+            }
+            else
+            {
+                label_resultado.Text = "NÂO";
+            }
+
+
+            //exemplo para escrever em 1 linha
+
+            int valor == 10;
+
+            label_resultado.Text = valor == 10 ? "SIM" : "NÂO";
+            // sinal de ":" significa "caso contrario
+
+            
+
+        }
+    }
+}
