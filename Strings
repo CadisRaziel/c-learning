@@ -1,0 +1,129 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TrabalhandoComStrings
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //STRINGS
+
+            string frase = "Este tipo de variável é alfanumérica.";
+
+            caixa_texto.Text = frase + " (contém " + frase.Length + " letras)";
+        }   //.ToUpper(); = letra maiuscula 
+            //.ToLower(); = letra minuscula
+            //.Trim(); = Remove os espaços do incio e do fim da frase
+            //.TrimStart = Remove os espaços do inicio da frase
+            //.TrimEnd = Remove os espaços do fim da frase
+            //.IndexoOf = vai mostrar o numero de uma palavra (exp : .IndexOf("tipo") o resultado vai ser 5 do "t"
+            //.LastIndexOf = vai mostrar o ultimo indice numero de uma palavra (exp : .IndexOf("e") o resultado vai ser 19 do 
+            //substring(5); = vai mostrar só da onde eu quero pra frente 
+            //exemplo /\ (5) E0 S1 T2 E3 "espaço"4 = 5e ntão vai começã da Tipo de variavel é alfanumerica
+            //exemplo /\ ou seja "tipo de variável é alfanumérica"
+
+            //------------------------
+
+            //para procurar alguma palavra \/ e dizer se é verdadeiro ou falso
+            //se ela existir na frase é verdadeiro se não existir é falto
+            string frase = "Este tipo de variável é alfanumérica.";
+             bool resultado = frase.Contains("é");
+             caixa_texto.Text = resultado.ToString();  
+            //como possui a palavre "é" então é verdadeiro (true).
+            //prestar atenção nas letras maiusculas e minuscula pois da diferença
+
+            //--------------------------
+            string frase = "Este tipo de variável é alfanumérica.";
+            bool resultado = frase.StartsWith("tipo");
+            caixa_texto.Text = resultado.ToString();
+
+            //StartsWith = "começa com"
+            //bool tem que se convertido para ToString.
+            //frases.StartsWith = ele vai olhar a primeira palavra da frases e comparar para ver se é veradeiro ou falso
+            // com isso /\ vai dizer se é verdadeiro ou falso exp: frases.StartsWith("tipo") é falso porque começa com "ESTE"
+
+            //--------------------------
+            string frase = "Este tipo de variável é alfanumérica.";
+            bool resultado = frase.EndsWith(".");
+            caixa_texto.Text = resultado.ToString();
+
+            //EndsWith = "termina com"
+            //bool tem que se convertido para ToString.
+            //frase.EndsWith ele vai olhar para a ultima palavra e comparar para ver se é verdadeiro ou falto
+            // com isso /\ vai dizer se é verdadeiro ou falso exp: frases.EndsWith(".") é verdadeiro termina em ponto final
+
+            //------------------------
+            //exercicio para verificar a ultilização disto /\
+            
+            //imagine que um usuario preencheu um formulario e escreveu seu nome e termina com ponto final.
+            //se ele colocou o ponto final, beleza ta correto
+            //se não eu quero acrescentar o ponto final
+
+            string frase = "Este tipo de variável é alfanumérica."
+
+            if(frase.EndsWith(".")) //se ele colocou ponto final termina aqui <<<
+            //caso contrario
+            {
+            }
+            else // vai colocar o ponto final na frase automaticamente \/
+            {
+                frase = frase + ".";
+            }
+
+                caixa_texto.Text = frase;
+
+            //Maneira mais simples de fazer /\
+
+            string frase = "Este tipo de variável é alfanumérica.";
+
+            if(!frase.EndsWith(".")) //se ele colocou ponto final termina aqui <<<
+            //! = "se" ou seja "se frase não termina[endswith] em ponto final ela vai acrescentar um ponto final \/
+            {
+                frase = frase + ".";
+            }
+
+            //------------------------------------
+            // inserir apelido
+            //Inster = inserir 
+            //6 = é aonde o espaço entre Vitor e zerbato exp V0 I1 T2 O3 R4 5espaço (se der errado tentar o 6 ou 7)
+            string nome = "Vitor Zerbato";
+            string apelido = "Brussolo ";
+            string nome_completo = nome.Insert(5, apelido);
+
+            caixa_texto.Text = nome_completo;
+
+            //--------------------------------------
+            //Subistituir o caracter atual por outro
+            //Replace = subistituir
+
+            string nome = "Vitor Zerbato";
+            string final = nome.Replace('o', '_');
+            //vai subistiruir a letra "o" por "_" underline 
+
+            caixa_texto.Text = final;
+
+
+            //---------------------------------------
+            //separar nomes como um array
+
+            string items = "joao,paulo,carlos,antonio"
+            string[] nomes = items.Split(',');
+            //vai serapar os nomes por "," (se nao ficaria tudo junto)
+            //vai transformar nomes em valor joao 0, paulo 1, calors 2, antonio3.
+            //Slpit = retorna um array de string
+
+            caixa_texto.Text = nomes[3];
+            // vai aparecer só o nome antonio /\ porque é o numero 3
