@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TrabalhandoComStrings
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //STRINGS
+
+            string frase = "Este tipo de variável é alfanumérica.";
+
+            caixa_texto.Text = frase + " (contém " + frase.Length + " letras)";
+        }   //ToUpper(); = letra maiuscula 
+            //ToLower(); = letra minuscula
+            //substring(5); = vai mostrar só da onde eu quero pra frente 
+            //exemplo /\ (5) E0 S1 T2 E3 "espaço"4 = 5e ntão vai começã da Tipo de variavel é alfanumerica
+            //exemplo /\ ou seja "tipo de variável é alfanumérica"
+
+            //para procurar alguma palavra \/ e dizer se é verdadeiro ou falso
+            //se ela existir na frase é verdadeiro se não existir é falto
+            // string frase = "Este tipo de variável é alfanumérica.";
+            // bool resultado = frase.Contains("é");
+            // caixa_texto.Text = resultado.ToString();  
+            //como possui a palavre "é" então é verdadeiro (true).
+            //prestar atenção nas letras maiusculas e minuscula pois da diferença
+
+            //
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
