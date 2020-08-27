@@ -1,0 +1,77 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OperadorPortuges
+{
+    public partial class form1 : Form
+    {
+        public form1()
+        {
+            InitializeComponent();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_resultado_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_executar_Click(object sender, EventArgs e)
+        {
+            //adição (o parse aparentemente é para que o usuario coloque o valor, ainda nao foi explicado)
+            int parcela_1 = int.Parse(text_parcela_1.Text);
+            int parcela_2 = int.Parse(text_parcela_2.Text);
+            int resultado;
+
+            //adição (+)
+            resultado = parcela_1 + parcela_2;
+
+            //Subtração (-)
+            resultado = parcela_1 - parcela_2;
+
+            //multiplicação (*)
+            resultado = parcela_1 * parcela_2;
+
+            //divisão (/)
+            resultado = parcela_1 / parcela_2;
+
+            /* modulos ("resto" exemplo 10 divido por 3 da 3 só que 3x3 da 9 então
+            vai restar 1 para dar 10 
+            então ele vai aparecer sómente o numero 1 que falta para dar 10 */ 
+            resultado = parcela_1 % parcela_2;
+
+            // Pode tambem ser feitas outras operações exemplo
+            resultado = parcela_1 + parcela_2 + 100 / 5 - 2;
+
+            // diminuindo o código em algumas operações
+            int resultado = 50;
+            // poderia fazer assim (ele automaticamente somaria 50 + 5)
+            resultado = resultado + 5;
+            // mas posso diminuir ele assim que vai fazer a mesma função que acima (é só alterar o sinal + - / * )
+            resultado += 5;
+            // ou para apenad 1+ ou -1 enfim fazer assim esse exemplo \/ só serve para o numero 1
+            resultado++; // sufixo ++ <= vai ser lido na ordem tipo segundo
+            // ou
+            ++resultado; //++ prefixo <= é para ser lido primeiro
+
+            // sempre que for fazer operação matematica no resultado abaixo \/ fazer isso
+            label_resultado.Text = (++resultado).ToString();
+            //ou
+            label_resultado.Text = (resultado + 5).ToString();
+            // a ultilização do ( ... ) é fundamental para que o programa reconheça que esta fazendo um calculo
+
+            label_resultado.Text = resultado.ToString();  
+        }
+    }
+}
