@@ -1,0 +1,81 @@
+*Gerenciador de soluções do lado direito* Botão direito em classes / adicionar / classes / class1.cs
+
+>>>>>Criando a classe<<<<<
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Principal;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Classes
+{
+    class pessoa
+    {
+        // \/ public = qualquer pessoa vai ter acesso
+        public string nome;
+        public int idade;
+        public string cor_cabelo;
+        public string cor_olhos;
+        public string cor_pele;
+
+        // \/ estão privadas não vai ter como atribuir valores(são só para utilização interna dela mesmo)
+        // string nome;
+        // int idade;
+        // string cor_cabelo;
+    }
+}
+
+>>>>>Utilizando a classe no código cmd_executar<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Classes
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_executar_Click(object sender, EventArgs e)
+        {
+            //classe para definir uma pessoa
+            //propiedade = Nome, cor do cabelo, cor dos olhos, cabelo, altura etc..
+            //funcionalidades(metodos) = correr, falar, comer, ouvir...
+
+            string nome = "qualquer coisa";
+
+            //primeiro voce cria a classe com nome idade enfim
+            //depois voce cria uma nova pessoa dentro da classe \/ new pessoa
+            //p1 é só o objeto
+            pessoa p1 = new pessoa();
+            p1.nome = "Vitor";
+            p1.idade = 27;
+            p1.cor_cabelo = "Preto";
+            p1.cor_olhos = "castanho";
+            p1.cor_pele = "Amarelo";
+
+            //para criar outra pessoa é só mudar o objeto "p2"
+            pessoa p2 = new pessoa();
+            p2.nome = "Gi";
+            p2.idade = 20;
+            p2.cor_cabelo = "preto";
+            p2.cor_olhos = "castranho";
+            p2.cor_pele = "branca";
+
+            caixa_texto.Text = p1.nome;
+        }
+    }
+}
