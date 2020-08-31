@@ -1,0 +1,94 @@
+
+>>>>>cmd_executar<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MetodoDeClasse
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void cmd_executar_Click(object sender, EventArgs e)
+        {
+            pessoa p1 = new pessoa();
+            p1.nome = "Vitor";
+            p1.apelido = "Brussolo Zerbato";
+
+            //identificar-se (metodo IdentificarSe \/)
+            p1.IdentificarSe();
+            //breakPoint /\ ao pressionar f9 o código vai parar de ler ali mas não destroi o resto
+            //para tirar é só apertar f9 novamente
+            //na opção debug la em cima tambem da pra fazer
+            //cliando aonde a bolinha vermelha ta tambem da certo como breakpoint
+            //ao EXECUTAR o código ele vai travar no breakpoint mais ao apertar f11 ele vai continuar para o proximo código
+            //é bom para ver o andamento do código
+            
+        }
+    }
+}
+
+>>>>>Classe Pessoa<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Principal;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MetodoDeClasse
+{
+    class pessoa
+    {
+        //metodo publico que não retorna valor por causa do "void" vai apenas executar
+        //metodo é tudo aqui que ao depois do . aparece exemplo nome."falar"
+        //Falar vai virar um metodo pois eu criei a classe dele como abaixo \/
+        public void Falar()
+        {
+            System.Windows.Forms.MessageBox.Show("falar.");
+            Saltar();
+        }
+        //quando o metodo é privado como abaixo ele não aprece como metodo no Form1.cs
+        //porém ele esta criado dentro da "class pessoa"
+        //ou seja eu posso utilizar ele aqui mesmo como no exemplo acima /\
+        //ao executar o comando "falar" ele logo em seguida vai executar o "saltar" no mesmo bloco
+        private void Saltar()
+        {
+            System.Windows.Forms.MessageBox.Show("Saltar.");
+        }
+
+        //---------------------------------------------------------
+
+        public string nome;
+        public string apelido;
+
+        public void IdentificarSe()
+        {
+            System.Windows.Forms.MessageBox.Show(ConstruirNome());
+        }
+        // o que fizemos aqui foi o seguinte
+        // criamos uma classe privada string 
+        // pois ela vai retornar o valor ali em cima no "System.Windows.Forms.MessageBox.Show(ConstruirNome());"
+        // toda classe que nao tiver void tem que colocar o "return"
+        // sempre que por o metodo dentro do () precisa fechar ele (ConstruirNome"()");
+        // esse metodo não vai aparecer como publico \/ e vai fazer a mesma função do que escrever
+        // System.Windows.Forms.MessageBox.Show(nome + " " + apelido);
+        private string ConstruirNome()
+        {
+            string nome_completo = nome + " " + apelido;
+            return nome_completo;
+        }
+    }
+}
