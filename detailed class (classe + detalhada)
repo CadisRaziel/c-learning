@@ -1,0 +1,77 @@
+>>>>>cmd_executar<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ClassesEmMaiorDetalhe
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void caixa_texto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmd_executar_Click(object sender, EventArgs e)
+        {
+            Pessoa p1 = new Pessoa();
+            p1.nome = "vitor";
+            p1.idade = 27;
+            p1.apresentar_se();
+            // e quando criar a classe "apresentar_se" ela vai fazer a ação que digitamos no código
+            // quando cria o metodo "public void" apresentar_se tem que colocar (); /\
+        }
+    }
+}
+//----------------------------------------------------------------------------------------------
+
+>>>>>classes<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ClassesEmMaiorDetalhe
+{
+    class Pessoa
+    {
+
+        //quando estiver escrito public ela aparece nos metodos "ola.nome" "ola.idade"
+        public string nome;
+        public int idade;
+        public string cor_cabelo;
+        string cor_olhos;
+        // quando não tem "public" é considerado privado e não vai aparecer quando por "."
+
+
+        // public void = ele só vai executar a ação
+        // ao colocar "p1.Falar" ele vai executar a classe falar e o que tem nela
+        // ao criar voce consegue utlizir no metodo exemplo \/
+        // p1.falar(); = e vai aparece o que eu defini como menssagebox.show
+        public void falar()
+        {
+            System.Windows.Forms.MessageBox.Show("olá meu nome é " + nome);
+        }
+        public void apresentar_se()
+        {
+            System.Windows.Forms.MessageBox.Show("O meu nome é" + " " + nome + " " + "e tenho" + " " + idade);
+        }
+
+      
+    }
+}
