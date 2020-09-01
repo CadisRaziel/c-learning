@@ -64,6 +64,7 @@ namespace MetodoDeClasse
         //porém ele esta criado dentro da "class pessoa"
         //ou seja eu posso utilizar ele aqui mesmo como no exemplo acima /\
         //ao executar o comando "falar" ele logo em seguida vai executar o "saltar" no mesmo bloco
+        
         private void Saltar()
         {
             System.Windows.Forms.MessageBox.Show("Saltar.");
@@ -85,6 +86,7 @@ namespace MetodoDeClasse
         // sempre que por o metodo dentro do () precisa fechar ele (ConstruirNome"()");
         // esse metodo não vai aparecer como publico \/ e vai fazer a mesma função do que escrever
         // System.Windows.Forms.MessageBox.Show(nome + " " + apelido);
+        
         private string ConstruirNome()
         {
             string nome_completo = nome + " " + apelido;
