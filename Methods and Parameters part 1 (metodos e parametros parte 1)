@@ -1,0 +1,119 @@
+
+
+<<<<<formcs.1>>>>>
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MetodosEparametros
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void cmd_executar_Click(object sender, EventArgs e)
+        {
+            matematica calculadora = new matematica();
+
+            // antes tinha que por isso \/
+            // agora simplificado fica dessa maneira \/
+            //calculadora.parcela1 = 10;             |
+            //calculadora.parcela2 = 20;             |
+            //                                       \/
+            caixa_texto.Text = calculadora.Adicao(10, 20).ToString();
+            caixa_texto.Text = calculadora.Subtracao(30, 40).ToString();
+            caixa_texto.Text = calculadora.Multiplcacao(50, 60).ToString();
+            caixa_texto.Text = calculadora.Divisao(70, 80).ToString();
+            // /\ >forma antiga<
+
+            //----------------------------
+
+            // \/ >forma mais facil< (simplificada por conta do parametro e metodo)
+            //como não coloquei o resultado na classe por causa do metodo
+            //eu coloco ele aqui
+            //ai eu não preciso colocar To.String
+
+            int resultado = calculadora.Adicao(10, 20);
+            int resultado = calculadora.Subtracao(30, 40);
+            int resultado = calculadora.Multiplcacao(50, 60);
+            int resultado = calculadora.Divisao(70, 80);
+
+            caixa_texto.Text = resultado.ToString();
+
+
+            //lembrando To.String é pra transforma numero em Texto
+            //Veja que toda vez quando coloco "." aparece a classe que eu c
+
+
+            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
+
+
+
+>>>>>classe matematica<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MetodosEparametros
+{
+    class matematica
+    {
+        // public int parcela1;
+        // public int parcela2;
+        // era assim antes /\
+
+        //depois simplificado fica assim \/ (parametro)
+
+        //metodos são variaveis 
+        //parametros \/
+        //usar "," para por outros int ou outra variavel
+
+        //forma mais facil de fazer
+        public int Adicao(int parcela1, int parcela2)
+        {
+            return parcela1 + parcela2;
+
+        }
+
+        public int Subtracao(int parcela3, int parcela4)
+        { 
+            return parcela3 - parcela4;
+        }
+
+        public int Multiplcacao(int parcela5, int parcela6)
+        {
+            return parcela5 * parcela6;
+        }
+
+        public int Divisao(int parcela7, int parcela8)
+        {
+            return parcela7 / parcela8;
+        }
+
+        //evitar ctrl + c -- ctrl + v
+
+        
+    }
+}
+
