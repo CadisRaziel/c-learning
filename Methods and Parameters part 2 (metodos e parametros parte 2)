@@ -1,0 +1,203 @@
+
+>>>>>cmd_executar<<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MetodosEparametros2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void cmd_executar_Click(object sender, EventArgs e)
+        {
+            matematica calculadora = new matematica();
+            //quando for realizar divisao,adicao,multiplicacao,subtracao
+            //fazer desta maneira que fica mais facil
+            //é só alterar ali onde ta multiplicacao por divisao,adicao etc...
+            int resultado = calculadora.Operacoes(10, 5, "multiplicacao");
+            caixa_texto.Text = resultado.ToString();
+        }
+    }
+}
+
+
+>>>>>classe<<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MetodosEparametros2
+{
+    class matematica
+    {
+        //essa e uma forma mais facil de fazer o ParametrosEmetodos part1
+        //quando for utilizar fazer dessa maneira \/
+        public int Operacoes(int parcela1, int parcela2, string operacao)
+        {
+
+            //caso não colocar "nenhuma palavra" nessa operação
+            //int resultado = calculadora.Operacoes(10, 5, "multiplicacao");
+            //vai aparecer -1 por que eu defini aquu \/
+            int resultado = -1;
+            switch (operacao)
+            {
+                case "adicao":
+                    resultado = parcela1 + parcela2;
+                    break;
+                case "subtracao":
+                    resultado = parcela1 - parcela2;
+                    break;
+                case "multiplicacao":
+                    resultado = parcela1 * parcela2;
+                    break;
+                case "divisao":
+                    resultado = parcela1 / parcela2;
+                    break;
+
+
+                //caso não colocar "nenhuma palavra" nessa operação
+                //posso fazer assim tambem do que colocar -1 igual la em cima
+                //default = caso não colocar adicao,subtacao,multiplicacao,divisao aqui\/
+                //int resultado = calculadora.Operacoes(10, 5, "multiplicacao");
+                //vai aparecer essa mensagem de -1000 
+                //um exemplo para indicar erro
+                default: resultado = -1000;
+                        break;
+            }
+
+            return resultado;
+
+                 
+        }
+
+
+        //---------------------------------------------------------
+        // podemos fazer dessa maneira tambem \/
+
+        public int Operacoes2(int parcela3, int parcela4, string operacao2)
+        {
+            int resultado = -1;
+            if (operacao2 == "adicao")
+                resultado = parcela3 + parcela4;
+
+            else if (operacao2 == "subtracao")
+                resultado = parcela3 - parcela4;
+
+            else if (operacao2 == "multiplicacao")
+                resultado = parcela3 * parcela4;
+
+            else if (operacao2 == "divisao")
+                resultado = parcela3 / parcela4;
+
+            //usa o mesmo código no cmd_executar \/
+            //int resultado = calculadora.Operacoes(10, 5, "multiplicacao");
+            //caixa_texto.Text = resultado.ToString();
+
+
+
+            return resultado;
+        
+        }
+    }
+    //---------------------------------------------------------
+    //outra maneira só que com privado
+
+    //é preciso criar esse código para estabelecer
+    //p1 como parcela 5
+    //p2 como parcela 6
+    //é colocado fora do public int para que ele ache o privado
+    int p1;
+    int p2;
+
+    //observação
+    //se eu colocar assim
+    // int parcela1; 
+    //vai ter um conflito com aqui >>>>> public int Operacoes3(int parcela5, int parcela6, string operacao3)
+    //pois ja existe a variavel parcela1
+    //então para duas variavel ter o nome igual
+    //ali aonde eu defini o p1 e p2 tenho que por assim
+    //this.parcela1 = parcela1;
+    //this.parcela2 = parcela2;
+    
+
+    public int Operacoes3(int parcela5, int parcela6, string operacao3)
+    {
+
+        //aqui definimos o p1 e p2 como parcela 5 e parcela 6
+        p1 = parcela5;
+        p2 = parcela6;
+        int resultado = 0;
+
+        if (operacao3 == "adicao")
+            //agora é assim \/
+            resultado = adicao();
+        //antes era assim return adicao();
+
+        else if (operacao3 == "subtracao")
+            //agora é assim \/
+            resultado = subtracao();
+
+        //antes era assim return subtracao();
+
+
+        else if (operacao3 == "multiplicacao")
+            //agora é assim \/
+            resultado = multiplicacao();
+
+        //antes era assim return multiplicacao();
+
+        else if (operacao3 == "divisao")
+            //agora é assim \/
+            resultado = divisao();
+
+        //antes era assim return divisao();
+
+        //no final coloque isso \/
+        return resultado;
+
+
+
+    }
+    private int adicao()
+    {
+        //aqui trocamos o nome de parcela5 e parcela 6
+        //para p1 e p2
+        //antes era assim return parcela5 + parcela6
+        //por ser privado o public int não ia encontrar
+        return p1 + p2;
+
+
+    }
+    private int subtracao()
+    {
+        return p1 - p2;
+
+
+    }
+    private int multiplicacao()
+    {
+        return p1 * p2;
+
+
+    }
+    private int divisao()
+    {
+        return p1 / p2;
+
+
+    }
