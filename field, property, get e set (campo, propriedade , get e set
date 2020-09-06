@@ -1,0 +1,144 @@
+
+
+definição de campo e de propriedade
+utilização do get e set
+
+>>>>>cmd_executar<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void cmd_executar_Click(object sender, EventArgs e)
+        {
+            
+            // isso \/ é utilizado no "set"
+            test v = new test();
+            v.Nome = caixaTexto.Text; // - vai mostrar na caixa de texto que coloquei, nome que eu por dentro dessa caixa de texto ela vai subistiuir
+            v.ApresentarSE();         // - o _nome exemplo se eu colocar vitor ele vai substituir o _nome e vai mostrar vitor ao clicar em executar
+            // /\ aqui eu posso criara o nome direto aqui
+
+
+            //-------------------------
+            //posso usar das duas formas conforme o projeto se encaminhar
+
+            //isso \/ é utlizado no "get"
+            test v = new test(); // ele vai devolver o _nome como eu definir 
+            string x = v.Nome;
+            v.ApresentarSE();
+            // /\ aqui eu posso ir buscar o nome la na classe "_nome"
+
+        }
+    }
+}
+
+
+>>>>>classe<<<<<<
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp1
+{
+    class test
+    {
+        // esse exemplo é para mostrar que algumas coisas precisam ser privadas
+        // e para criar o algoritimo necessario para ela não aparecer aqui mais ali no form1.cs
+
+
+
+        //definição de um campo\/ 
+        //public string nome;
+        // é correto sempre deixar o campo privado
+        private string _nome; //SEMPRE POR _ ANTES DE QUALQUER NOME AQUI
+        // ele fica invisivel para o form1.cs
+        // mas fica disponivel para todos os metodos criados abaixo \/
+
+        //definição de uma propriedade\/
+        public string Nome
+        {
+            set // = definir qual o valor de _nome;
+
+            {
+                _nome = value;  //value = valor que vai atribuir ao Nome, com isso vai aparecer,
+                                //ali no form1.cs exemplo v."Nome"
+            }
+
+            get  // = vai buscar o valor de _nome;
+        
+            {
+                return _nome;
+            }
+
+            //----------------------------------
+            // verificação de valor
+
+            set
+            {
+
+                //caso eu coloque na caixa de texto Vitor vai aparecer "erro"
+                // pois eu disse pro código que a validação é vitor vai aparecer um "erro"
+                if (value == "vitor")
+                    //System.Windows.Forms.MessageBox.Show("aconteceu um erro") para aparecer uma caixa de mensagem quando for necessario
+                    _nome = "Erro";
+
+                //caso não colocar vitor ele vai definir o valor que eu escrever dentro da caixa
+                else
+                    _nome = value;
+
+                //----------------------------------
+                //reduzindo o código set e get
+
+                set {_nome = value;}
+
+                get {return _nome;}
+
+                // ou
+
+               Public string Nome( get; set; )
+                // só que dessa maneira /\ o nome vai ser buscado aqui \/
+                public void ApresentarSE()
+                {
+                System.Windows.Forms.MessageBox.Show(nome);
+                }
+
+                // observação não é necessario usar os dois juntos (mas é bom por porque nunca se sabe)
+                // usa um ou o outro de acordo com que achar mais facil
+
+            }
+        }
+
+
+         //--------------------------------------
+
+        public void ApresentarSE()
+
+
+        //defnição de um método\/
+        {
+            System.Windows.Forms.MessageBox.Show(nome);
+        }
+    }
+}
+
