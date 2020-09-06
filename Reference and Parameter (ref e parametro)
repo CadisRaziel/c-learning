@@ -1,0 +1,100 @@
+
+
+>>>>> Como transportar um valor para dentro de uma classe a partir da referencia
+>>>>> Como colocar um valor dentro de parametro como "X"
+
+>>>>>cmd_executar<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ClassesParametros
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void cmd_executar_Click(object sender, EventArgs e)
+        {
+            test objeto = new test();
+            //fazendo o valor ir daqui para dentro da classe
+            //como referencia
+
+            int v = 10;
+            objeto.Aumentar(ref v);
+            caixa_texto.Text = v.ToString();
+
+            //observação 
+
+            test objeto = new test();
+            int v = 10;
+            // se eu colocar o 10 como coloquei ali, o programa vai ver esse 10 e excluir o v =20
+            // e não o valor que eu coloquei dentro do parametro que é (v = 20)
+            v = objeto.Aumentar(300, 10);
+            // o 300 vai ser o valor de "x"
+            // o correto é fazer assim v = objeto.Aumentar(300); pois eu ja tenho v = 20 no parametro
+            caixa_texto.Text = v.ToString();
+
+        }
+    }
+}
+
+
+>>>>>Classe<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ClassesParametros
+{
+    class test
+    {
+        public void Aumentar(ref int valor)
+            //ref = para pegar uma variavel do cmd_executar
+            //e introduzila dentro do parametro "ref int valor"
+        {
+            valor += 5;
+        }
+
+        public void Diminuir(ref int valor)
+        //ref = para pegar uma variavel do cmd_executar
+        //e introduzila dentro do parametro "ref int valor"
+
+        {
+            valor -= 5;
+        }
+
+        //----------------------------------------------------
+        //uma observação sobre o parametro
+        //quando colocar um valor dentro public int Aumentar(int x, int v = 10)
+        // o int v = 10 não pode ficar primeiro pois ele ja tem valor
+        // se ele ficar assim public int Aumentar(int v = 10, x) vai dar errado
+        // pois só vai encontrar o valor de 10 o de x não
+        // para ficar correto toda variavel que nao tiver valor tem que vir primeiro
+        // exemplo public int Aumentar(int x, int v = 10)
+        public int Aumentar(int x, int v = 20)
+        {
+            v = v + x;
+            return v;
+        }
+
+        public int Diminuir(int valor = 10)
+       
+        {
+            return valor;
+        }
+    }
+}
