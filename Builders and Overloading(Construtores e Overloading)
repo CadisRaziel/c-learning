@@ -1,0 +1,94 @@
+Construtores e Overloading
+
+>>>>>cmd_executar<<<<<
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConstrutorOverloading
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void cmd_executar_Click(object sender, EventArgs e)
+        {
+            test v = new test("vitor", 27); //com o construtor eu posso por direto dentro do ()
+            v.apresentar();//esse é o construtor e vai apresentar o public void normal
+            v.apresentar(">>>"); // esse é o separador com overloading (ele vai apresentar o public void com overloading)
+                                 // vai aparecer "vitor >>> 27" pois eu defini ali dentro >>>
+            v.apresentar("aqui", 27); // outro overloading
+            //observação lembre-se de quando abrir () ele vai aparecer os separadores para escolher 
+
+        }
+    }
+}
+
+>>>>>Classe<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConstrutorOverloading
+{
+    class test
+        // construtor = é uma estruutura semelhante a um metodo mais serve para atribuir valor 
+        // e executar alguma função\/
+
+    {
+        string _nome;
+        int _idade;
+
+        //o construtor não retornada nada, mas não é necessario por "void"
+        //é obrigatório por o nome da classe após o public e fechar com parenteses ()
+        public test(string nome, int idade)// colocando dentro do () no form1.cs eu posso por da seguinte maneira olhe la
+        {    _nome = nome;
+            _idade = idade;
+
+
+     }
+
+        
+       // esse é um metodo pois tem valor do retorno ou o void que não retorna nada \/
+        public void apresentar()// aqui dentro não preciso colocar nada pois ja defini ali em cima
+        {
+            System.Windows.Forms.MessageBox.Show(_nome + " -> " + _idade);
+
+        }
+
+
+        //--------------------------------------------------
+        //Overloading = Poder criar metodos ou construtores com uma determinada assinatura
+        //mais conseguir criar varios metodos com o mesmo nome mais com assinatura diferente
+        //"assinatura = public void apresentar()"
+
+        public void apresentar(string separador)// reparem que tem o mesmo nome "apresentar" porem tem o separador dentro do ()
+        {
+            System.Windows.Forms.MessageBox.Show(_nome + separador + _idade);
+        }
+
+        //-------------------------------------------------------
+
+        public void apresentar(string separador, int idade)
+        {
+
+
+        }
+
+    }
+}
+
