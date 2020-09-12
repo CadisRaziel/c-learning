@@ -1,0 +1,111 @@
+
+
+Criando enumerações (são tipo arrays)
+Criando uma tela de intarface para botões de jogo
+Ela vai aparecer no "output" ou "saida" quando compilar
+
+>>>>>cmd_executar<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Enumeracoes
+{
+    public partial class Form1 : Form
+    {
+
+        test jogador;
+        //Preciso criar um jogador aqui para que todas as classes veja ele
+        public Form1()
+        {
+            InitializeComponent();
+
+            jogador = new test();
+            //preciso por o jogador aqui para não precisar repetir (test = objeto = new test();)
+
+        }
+
+        private void cmd_executar_Click(object sender, EventArgs e)
+        {
+            //Como não esta no modo console como a calculadora que fiz ele vai aparece o programa e não o prompt de comando
+            //e ao executar ele vai aparecer ali em baixo na "saida" ou "output"
+            //Console.WriteLine("Essa frase vai aparecer no console");
+
+
+            //-----------------------------------
+            //EXEMPLO \/
+
+            //test objeto = new test();
+            //ao criar a enum na classe test ela vai aparecer assim aqui \/ "test.DiasDaSemana e ao colocar "." aparece os dias que coloquei la
+            //objeto.ApresentarDia(test.DiasDaSemana.Sabado);
+
+
+            //------------------------------------------
+            // criando movimentação em um jogo 
+            // porém vai aparecer na tela e nao usando as setinhas do pc
+            jogador.Mover(test.Movimentos.Direita);
+            //o mover simula um jogo com direções tipo tibia \/ /\
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            jogador.Mover(test.Movimentos.Baixo);
+        }
+
+        private void btn_Esquerda_Click(object sender, EventArgs e)
+        {
+            jogador.Mover(test.Movimentos.Esquerda);
+        }
+
+        private void btn_Cima_Click(object sender, EventArgs e)
+        {
+            jogador.Mover(test.Movimentos.Cima);
+        }
+    }   }
+
+
+>>>>>Classe.cs<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Enumeracoes
+{
+    class test
+    {
+        //enumeração \/
+
+        //Segunda[0] Terça[1] Quarta [2] Quinta[3] Sexta[4] Sabado[5] Domingo[6]
+        public enum DiasDaSemana
+        {
+            Segunda, Terça, Quarta, Quinta, Sexta, Sabado, Domingo 
+        }
+
+        public enum Movimentos { Cima, Baixo, Esquerda, Direita}
+        //Exemplo de um jogo, e tambem simplificando o enum com {}
+        
+
+
+        public void ApresentarDia(DiasDaSemana dia)
+        {
+            Console.WriteLine("O dia escolhido Foi " +  dia);
+        }
+
+        public void Mover(Movimentos direcao)
+
+        {
+            Console.WriteLine("O jogador moveu-se para " + direcao);  
+
+        }
+    }
+}
