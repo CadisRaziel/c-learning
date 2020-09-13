@@ -1,0 +1,114 @@
+
+
+Criando classe statica para por titulo ao programa
+
+>>>>>cmd_executar<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ClasseEstatica
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+            this.Text = Estatica.NomePrograma;
+            //Ao criar a classe estatica com o nome do programa
+            //é necessario colocar aqui !!!!!
+            //Lembrando e bom criar a classe statica apenas para por titulo ao projeto
+            //nunca usar ela para criar objeto !!
+        }
+
+        private void cmd_executar_Click(object sender, EventArgs e)
+        {
+            //Classe definindo o valor de um objeto \/
+            normal objeto1 = new normal();
+            objeto1.Nome = "Vitor";
+            objeto1.apresentarNome();
+
+            normal objeto2 = new normal();
+            objeto2.Nome = "Joao";
+            objeto2.apresentarNome();
+
+            //todo objeto que eu criar vai aparecer no console
+
+            //-------------------------------------
+            // fazendo o modo static
+            //Tomar cuidado pois se alterar o valor de nome ele altera de tudo que tem de statico no projeto permanente !!!
+
+            Estatica.Nome2 = "Rosana";
+            Estatica.ApresentarNome2();
+            //Exemplo se alterar \/
+            Estatica.Nome2 = "Monique";
+            Estatica.ApresentarNome2();
+            //se eu trocar rosana por monique todo o projeto vai ver como monique e vai ficar permanente ! 
+
+
+        }
+    }
+}
+
+>>>>>Classe Normal<<<<<<
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ClasseEstatica
+{
+    class normal
+    {
+
+        //classe definindo um objeto \/
+        public string Nome { get; set; }
+
+        public void apresentarNome()
+        {
+            Console.WriteLine(Nome);
+
+        }
+    }
+}
+
+>>>>>Classe Estatica<<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ClasseEstatica
+{
+    public static class Estatica
+        //sempre quando criar a classe estatica tem que colocar "public static"
+        //quando é criado ela vem sem
+        //fica acessivel a todo o projeto quando static
+    {
+        public static string Nome2;
+        // tem sempre que por static se não da erro
+
+        //posso criar tambem ja colocando o valor da string "NomePrograma" \/
+        public static string NomePrograma = "Aplicação de teste";
+        // fazendo isso /\ ele vai aparecer o nome "aplicação de teste" como titulo em cima do programa 
+        // lembrando que ao criar o nome do projeto aqui tem que por tambem no form1 "InitializeComponent"
+
+
+        public static void ApresentarNome2()
+        {
+
+            Console.WriteLine(Nome2);
+        }
+
+    }
+}
