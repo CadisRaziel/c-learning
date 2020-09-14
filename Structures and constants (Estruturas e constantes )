@@ -1,0 +1,155 @@
+
+Lembrando que não é necessario criar uma classe para uma estrutura.
+Uma constante nunca pode ser alterada.
+
+>>>>>cmd_executar<<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConstantesEestruturas
+{
+    public partial class Form1 : Form
+    {
+        struct estrutura_pessoa
+        //struct = estrutura
+        {
+            public string Nome;
+            public string Apelido;
+            //criando aqui a estrutura eu nao preciso de uma classe e nao preciso de get e set.
+
+        }
+
+        //const string Nome = "vitor";
+        //Sempre que eu definir uma constante string eu preciso por o valor !!!! ou seja o nome ou o numero
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void cmd_executar_Click(object sender, EventArgs e)
+        {
+            //Console.WriteLine("O meu nome é" + Nome);
+            //Quando é uma constante é necesario apenas por o "nome" como eu defini( pois ela não pod ser alterada )
+
+            normal objeto1 = new normal();
+            Console.WriteLine(objeto1.Nome);
+            //esse é sobre a classe normal /\
+
+            //esse é sobre a classe estatica\/
+            Console.WriteLine(Estatica.nome);
+
+            //----------------------------------
+            //estruturas
+
+            //essa é como ficaria se precisasse criar uma classe para estrutura \/
+            estrutura p1 = new estrutura();
+            p1.nome = "Shell";
+            p1.apelido = "dev";
+            //serve para definir propriedades para um objeto
+            //mas não pode ter construtor nem utilizar metodo nessa estrutura
+            //não é preciso criar uma classe, é só escrever ali em cima, embaixo de public partial class Form1 : Form
+
+
+
+            //assim é como fica criando a estrutura CORRETAMENTE em baixo do public partial class Form1 : Form
+            //LEMBRANDO ESTRUTURA NÃO PRECISA CRIAR CLASSE !!!!
+            estrutura_pessoa p2 = new estrutura_pessoa();
+            p2.Nome = "Shell1";
+            p2.Apelido = "dev2";
+            Console.WriteLine(p2.Nome + " " + p2.Apelido);
+
+            //da para simplificar o código assim tambem \/
+            estrutura_pessoa p3 = new estrutura_pessoa() { Nome = "Shell2", Apelido = "dev2" };
+            Console.WriteLine(p3.Nome + " " + p3.Apelido);
+
+
+            //-----------------
+            //OBSERVAÇÃO
+            //estrutura_pessoa p3 = new estrutura_pessoa(); = OBJETO
+            //{ Nome = "Shell2", Apelido = "dev2" }; valores referente as propriedades criadas em baixo do public partial class Form1 : Form
+
+
+
+
+        }
+    }
+}
+
+>>>>>Classe estatica<<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConstantesEestruturas
+{
+    public static class Estatica
+    {
+        public const string nome = "Power";
+        //repare que não é preciso por static antes do const, porque constante assim como static não da para alterar.
+        //lemnbrando que tudo que eu faço que é static ele fica disponivel para o código todo
+    }
+}
+
+
+>>>>>Classe normal<<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConstantesEestruturas
+{
+    class normal
+    {
+        public const string _nome = "Vitor"; 
+        
+        public string Nome
+        {
+            //set
+            //{
+                // _nome = value;
+                //não da certo pois o set apenas serve para variaveis, propriedades e indexadores
+
+            //}
+
+            get
+            {
+                return _nome;
+
+            }
+
+        }
+    }
+}
+
+>>>>>Classe estrutura(só para exemplo, não é precisso cria-la<<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConstantesEestruturas
+{
+    class estrutura //estrutura não contem método por ser mais simples
+    {
+        public string nome { get; set; }
+        public string apelido { get; set; }
+
+    }
+}
+
