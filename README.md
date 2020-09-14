@@ -7,6 +7,6 @@ Ajude o joão Ribeiro com donates = http://www.sys4soft.com/web/index.php/geral/
 http://www.sys4soft.com/web/index.php/
 
 
- <img src="http://www.sys4soft.com/web/assets/images/logotipo_pc.png" alt="javascript" width="40" height="40"/>
+ <img src="http://www.sys4soft.com/web/assets/images/logotipo_pc.png" alt="javascript" width="100" height="100"/>
 
 
