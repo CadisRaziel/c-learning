@@ -1,0 +1,81 @@
+Para renomear troque o nome no gerenciador de soluções em cima da "properties" e depois na "solução"
+Ao fazer isso clicar na pasta do lado direito da "seta verde iniciar" vai aparecer "substituir arquivos" ai voce localiza o nome que colocou e subistitui para o nome que quer igual fez em cima de properties e na solução
+ao fazer isso clique 2x em "properties" e alterar os nomes e clique para salvar.
+
+//-----------------------------------------------------
+
+>>>>>>form1.cs<<<<< (não teve botão para por cmd_executar)
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ClasseParcial
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
+
+
+>>>>>classe teste<<<<<
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ClasseParcial
+{
+    partial class teste
+    {
+        //propriedades da classe
+        public string nome { get; set; }
+        public string apelido { get; set; }
+    }
+}
+
+>>>>>classe teste_metodos<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ClasseParcial
+{
+    partial class teste
+    //estava assim "class test_metodos" e ficou assim "partial class teste"
+    //quando coloco Partial posso ter classes com o mesmo nome
+    //tudo que eu escreve nessa classe, é como se eu escrever dentro da "teste.cs"
+    {
+        public void ApresentarNome()
+        {
+            Console.WriteLine(nome + " " + apelido);
+            //Olha como apareceu o "nome e apelido" ele esta criado dentro da classe test.cs
+            //porém como alteramos o nome desse classe que era "clas test_metodos" para "partial class teste
+            //automaticamente dizemos que tudo que criamos nessa classe faz parte da classe "test.cs"
+            
+
+            // ou seja a possibilidade de criar classes iguais mas separadas por ficheiros
+            // apenas uma forma de organizar melhor o lado ali >>> c# program.cs
+
+        }
+    }
+}
