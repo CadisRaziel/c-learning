@@ -1,0 +1,147 @@
+//Observação  = Imagine que eu quero que cl_veiculo sirva apenas para ser "HERANÇA" e nao "OBJETO"
+    //abstract class cl_veiculo == Abstract serve apenas para que a classe fique como HERANÇA impedindo a criação de objeto a partir dela
+    //Ou seja podemos definir varias coisas aqui para outras classes como nos exemplos que fiz
+    //como ela nao é mais objeto é apenas herença no form1.cs não vou conseguir criar "cl_veiculo carro = new cl_veiculo();"
+    abstract class cl_veiculo //Abstract para ela ser apenas herança e não objeto como a observação acima
+    
+    
+    >>>>btn_executar<<<<<
+    
+    using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Herança
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_executar_Click(object sender, EventArgs e)
+        {
+            // o get; set; serve para eu definir aqui o valor da string e não na classe
+            cl_carro carro = new cl_carro();
+            cl_bicicleta bicicleta = new cl_bicicleta();
+            carro.Acelerar2();
+            bicicleta.Acelerar2();
+
+
+
+            
+            
+        }
+    }
+}
+
+
+>>>>Cl_veiculo<<<<< CLASSE PRINCIPAL
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Herança
+{
+
+    //Observação  = Imagine que eu quero que cl_veiculo sirva apenas para ser "HERANÇA" e nao "OBJETO"
+    //abstract class cl_veiculo == Abstract serve apenas para que a classe fique como HERANÇA impedindo a criação de objeto a partir dela
+    //Ou seja podemos definir varias coisas aqui para outras classes como nos exemplos que fiz
+    //como ela nao é mais objeto é apenas herença no form1.cs não vou conseguir criar "cl_veiculo carro = new cl_veiculo();"
+    abstract class cl_veiculo //Abstract para ela ser apenas herança e não objeto como a observação acima
+    {
+        public string corVeiculo { get; set; }
+        public string marca { get; set; }
+
+        //também da para herdar metodos \/
+        public void Acelerar()
+        {
+            Console.WriteLine("Acelerou");
+            //se eu não definir nada aqui dentro ou tirar o  "Console.WriteLine("Acelerou");" automaticamente nas outras classes eu tenho que criar uma acelerar e colocar algo dentro
+
+        }
+        abstract public void Acelerar2();
+        //quando eu coloco abstratc eu to dizendo que vai ter o Metodo Acelerar2 porém eu vo te que criar ele nas outras classes
+        //com isso eu posso por ele em varias classes mas com propriedades diferentes
+        //OBSERVAÇÂO OBRIGATORIAMENTE AS OUTRAS CLASSES TERÀO QUE TER ESSE PARAMETRO "abstract public void Acelerar2" CUIDADO AO POR !!!
+
+
+
+
+    }
+}
+
+>>>>>CL_carro<<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Herança
+{
+    //Observação esse tipo de classe é criado para não ter a necessidade de criar varias classes iguais
+    //porém imagine assim nessa classe tem "VelocidadeMax" então só ela vai ter esse atribudo
+    //a cl_veiculo não vai ter pois ela não esta herdando a cl_carro mais sim a cl_carro esta herdando a cl_veiculo
+    class cl_carro : cl_veiculo //dessa forma ela vai herda as mesmas propriedades que cl_veiculo tem não sendo necessario escrever tudo novamente
+        // ou seja quando eu criar no Form1.cs cl_carro carro = new cl_carro ela vai ter "corVeiculo" e "marca" como eu defini no cl_veiculo
+    {   
+        public int velocidadeMax { get; set; }
+
+        //esse metodo só vai aparecer nessa classe \/ como explicado esse classe esta herdando metodos e propriedades da cl_veiculo
+        public void LigarMotor()
+        {
+
+
+        }
+
+        public override void Acelerar2()
+        {
+            //como eu defini na classe cl_veiculo acelerar2(); aqui eu preciso por desta maneira se nao da erro
+            //como eu não defini nada no acelear2(); na cL_veiculo, aqui eu tenho que definir
+            Console.WriteLine("Acelear");
+        }
+    }
+}
+
+>>>>>Cl_Bicicleta<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Herança
+{
+    class cl_bicicleta : cl_veiculo
+
+    {
+        //como esta herdando a cl_veiculo ela vai ter tudo isso
+        //public string corVeiculo { get; set; }
+        //public string marca { get; set; }
+        //public void Acelerar()
+        public void Pedalar()
+        {
+
+        }
+        public override void Acelerar2()
+        {
+            //como eu defini na classe cl_veiculo acelerar2(); aqui eu preciso por desta maneira se nao da erro
+            //como eu não defini nada no acelear2(); na cL_veiculo, aqui eu tenho que definir
+            Console.WriteLine("Acelear");
+
+        }
+    }
+}
