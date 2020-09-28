@@ -1,0 +1,146 @@
+Criando apenas 1 classe e dentro dela vai ter 3 subclasses como herança !!!!
+Essa técnica substitui a necessiade de criar varias classes separadas
+com isso teremos apeans 1 classe criada com 3 subclasses dentro dela!!!
+
+
+>>>>>btn_executar<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Polimorfismo
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_executar_Click(object sender, EventArgs e)
+        {
+            Retangulo forma1 = new Retangulo();
+            forma1.Largura = 50; // = consigo colocar o valor 50 aqui por conta do  set { _largura = value; }
+            forma1.Altura = 100; // = consigo colocar o valor 100 aqui por conta do  set { _largura = value; }
+            forma1.Apresentar();
+            forma1.Desenhar();
+            forma1.Desenhar_outro();
+            // Observe que tudo que esta aqui é da classe base e das classes derivada da classe base !!! 
+
+            Triangulo forma2 = new Triangulo();
+            forma2.Largura = 150;
+            forma2.Altura = 200;
+            forma2.Apresentar();
+            forma2.Desenhar();
+            forma2.Desenhar_outro();
+
+
+            Circulo forma3 = new Circulo();
+            forma3.Altura = 350;
+            forma3.Largura = 300;
+            forma3.Apresentar();
+            forma3.Desenhar();
+            forma3.Desenhar_outro();
+
+        }
+    }
+}
+
+
+>>>>Classe principal<<<<<
+
+abstract class forma_geometrica // estava assim = class classes (todas classes aqui criada vai ficar guardada dentro do ficheiro classes.cs)
+
+    {
+        int _largura;
+        int _altura;
+
+
+
+        //----------------------------------------------------------------------------
+        public int Largura
+        {
+            get { return _largura; }
+            set { _largura = value; }
+        }
+
+
+        //----------------------------------------------------------------------------
+        public int Altura
+        {
+            get { return _altura; }
+            set { _altura = value; }
+        }
+
+
+        //----------------------------------------------------------------------------
+        public void Apresentar()
+        {
+            Console.WriteLine("Este método pertence a classe base.");
+        }
+
+
+
+        //----------------------------------------------------------------------------
+        public abstract void Desenhar();//é obrigatório que as outras classes tenha esse parametro então cuidado ao por ! 
+        //este método é implementado em todas as classes derivadas
+
+
+
+        //----------------------------------------------------------------------------
+        public virtual void Desenhar_outro()//não é obrigatório ter nas outras classes porém da para altera-lo ou deixa-lo como esta 
+        {
+            Console.WriteLine("Método virtual da classe base.");
+
+        }
+        
+    }
+    
+    
+    >>>>> Sub classe Retangulo <<<<<< 
+    
+     class Retangulo : forma_geometrica
+        {
+        public override void Desenhar()
+            {
+                Console.WriteLine("Desenhar retângulo com as dimensoes: " + Largura + "x" + Altura);
+            }
+
+        public override void Desenhar_outro()
+        {
+            // base.Desenhar_outro(); // lembre-se que aparece assim para deixar igual a principal mas como é "virtual" da para alterar como abaixo
+            Console.WriteLine("Este é um método virtual substituido da classe derivada. ");
+        }
+        
+        
+        
+        
+    >>>>> Sub classe Triangulo <<<<<
+    
+      class Triangulo : forma_geometrica
+        {
+            public override void Desenhar()
+            {
+                Console.WriteLine("Desenhar triangulo com as dimensoes: " + Largura + "x" + Altura);
+            }
+        }
+        
+        
+        
+        
+    >>>>> Sub classe Circulo <<<<<
+    
+      class Circulo : forma_geometrica
+        {
+            public override void Desenhar()
+            {
+                Console.WriteLine("Desenhar circulo com as dimensoes: " + Largura + "x" + Altura);
+            }
+        }
