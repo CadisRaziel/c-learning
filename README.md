@@ -1,7 +1,7 @@
 # Programador em construção | | Programmer under construction
 
 
-<img src="https://user-images.githubusercontent.com/70340981/94454234-00785c00-0188-11eb-886c-72a5c7b14d11.gif" alt="javascript" width="250" height="250"/>
+<img src="https://user-images.githubusercontent.com/70340981/94454234-00785c00-0188-11eb-886c-72a5c7b14d11.gif" alt="javascript" width="300" height="250"/>
 
 
 
