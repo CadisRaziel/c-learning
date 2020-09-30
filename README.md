@@ -18,7 +18,11 @@ Help João Ribeiro with donations | | Ajude o joão Ribeiro com donates = http:/
 http://www.sys4soft.com/web/index.php/
 
 
- <img src="http://www.sys4soft.com/web/assets/images/logotipo_pc.png" alt="javascript" width="250" height="120"/>
+<img src="https://user-images.githubusercontent.com/70340981/93710679-e652d400-fb1e-11ea-9fb9-582eaaa4f9bf.png" width="250" height="120"/>
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 ### 🖥📚 Learning C# with classes at cebrac with professor marcelo !
@@ -30,7 +34,7 @@ https://www.cebrac.com.br/sao-jose-do-rio-preto
 
 
 
-<img src="https://www.cebrac.com.br/view/unidade/img/logos/logo-cebrac.svg" alt="javascript" width="250" height="120"/>
+<img src="https://user-images.githubusercontent.com/70340981/93710706-08e4ed00-fb1f-11ea-8154-d486c6b22f8a.png" width="250" height="120"/>
 
 
 
