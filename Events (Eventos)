@@ -1,0 +1,80 @@
+Eventos são criados cliando no "RAIO" que fica em propriedades !!!!
+observe no exemplo abaixo como conseguimos alterar a cor de botoes e label's ao colocar o mouse em cima e tirar e ao cicar e desclicar 
+
+(1 label, 1 botão)
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Evento2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_executar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void caixa_texto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void caixa_texto_MouseEnter(object sender, EventArgs e)
+        {
+            caixa_texto.BackColor = Color.BlueViolet;//quando coloca o mouse em cima muda de cor
+        }
+
+        private void caixa_texto_MouseLeave(object sender, EventArgs e)
+        {
+            //sempre usar transparente no leave
+            caixa_texto.BackColor = Color.Transparent;//quando o mouse sair de cima muda de cor
+        }
+
+        private void caixa_texto_MouseDown(object sender, MouseEventArgs e)
+        {
+            caixa_texto.BackColor = Color.Red;//quando o mouse esta clicado em cima
+        }
+
+        private void caixa_texto_MouseUp(object sender, MouseEventArgs e)
+        {
+            //sempre usar o transparente no up ----- porém podemos colocar a mesma cor do "mouse enter"
+            caixa_texto.BackColor = Color.BlueViolet;//quando desclica o mouse de cima
+        }
+
+
+        // ------------------------------------------------------------------------
+
+        private void btn_executar_MouseEnter(object sender, EventArgs e)
+        {
+            btn_executar.BackColor = Color.DeepSkyBlue;
+        }
+
+        private void btn_executar_MouseLeave(object sender, EventArgs e)
+        {
+            btn_executar.BackColor = Color.Transparent;
+        }
+
+        private void btn_executar_MouseDown(object sender, MouseEventArgs e)
+        {
+            btn_executar.BackColor = Color.Red;
+        }
+
+        private void btn_executar_MouseUp(object sender, MouseEventArgs e)
+        {
+            btn_executar.BackColor = Color.DeepSkyBlue;
+        }
+    }
+}
