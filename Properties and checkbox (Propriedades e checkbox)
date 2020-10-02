@@ -1,0 +1,72 @@
+
+aqui vou mostrar como fazer o checkbox ficar visivel ou invisivel ao clicar e desclicar
+tambem vou mostrar como alterar o texto do label sem precisar alterar nas propriedads e sim no código
+e vou mostrar um exemplo para mostrar quando o checkbox esta marcado ou não
+
+
+(coloquei 1 label, 2 botões, 2 checkbox)
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Properties
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_executar_Click(object sender, EventArgs e)
+        {
+            //ao clicar no botao "executar" o texto vai ser alterado para "exemplo" e a cor de fundo vai ser verde
+            caixa_texto.Text = "Exemplo";
+            caixa_texto.BackColor = Color.Green;
+            caixa_texto.Size = new Size(100, 100);
+            //aqui o fundo vai ser deste tamanho /\
+
+            // exemplo de que ao invez da propriedades eu posso alterar diretamente aqui
+
+
+
+        }
+
+        private void btn2_executar_Click(object sender, EventArgs e)
+        {
+            //se o checkbox estiver checado 
+            if(checkbox.Checked)
+            {
+                caixa_texto.Text = "SIM";
+            }
+            else
+            {
+                caixa_texto.Text = "NAO";
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (checkBox2.Checked)
+            //    caixa_texto.Visible = true;
+            //else
+            //    caixa_texto.Visible = false;
+
+            caixa_texto.Visible = checkBox2.Checked;
+            //essa linha de código faz a mesma coisa que a de cima !!
+
+
+
+            //resumindo ao clicar ele fica mostrando o conteudo ao desmarcar ele deixa invisivel
+            
+        }
+    }
+}
