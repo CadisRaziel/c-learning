@@ -1,0 +1,118 @@
+Criando um formulario com varias janelas(varios outros formularios)
+
+FrmPrimeiro = 3 botões
+FrmUm = 1 botão
+FrmDois = 1 botão
+
+
+
+>>>>>FrmPrimeiro<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AplicacoesComMaisDeUmFormulario
+{
+    public partial class FrmPrimeiro : Form
+    {
+        public FrmPrimeiro()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_executar1_Click(object sender, EventArgs e)
+        {
+            FrmUm formulario = new FrmUm();
+            //essa linha de códio a cima define a programação orientada por objeto
+            formulario.ShowDialog(); // = showdialog é para abrir uma nova "aba", tipo se eu clicar em ajuda vai abrir uma nova janela como o Form1
+        }
+
+        private void FrmPrimeiro_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_executar2_Click(object sender, EventArgs e)
+        {
+            FrmDois formulario = new FrmDois();
+            formulario.ShowDialog();
+
+            //observe que o "formulario" pode ser igual a o da outra classe por as classes serem privadas !!
+        }
+
+        private void btn_exit_Click(object sender, EventArgs e)
+        {
+            //aqui vamos ver um jeito de fechar o aplicativo mesmo tendo formularios escondidos
+            Application.Exit();
+            
+        }
+    }
+}
+
+
+
+>>>>>FrmUm<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AplicacoesComMaisDeUmFormulario
+{
+    public partial class FrmUm : Form
+    {
+        public FrmUm()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_executar3_Click(object sender, EventArgs e)
+        {
+            //fechar o formulario
+            this.Close();
+            //this significa essa classe toda aqui 
+        }
+    }
+}
+
+
+>>>>>FrmDois<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AplicacoesComMaisDeUmFormulario
+{
+    public partial class FrmDois : Form
+    {
+        public FrmDois()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_executar3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+}
