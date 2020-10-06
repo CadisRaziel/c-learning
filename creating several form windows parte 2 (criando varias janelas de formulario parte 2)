@@ -1,0 +1,102 @@
+
+Nessa parte dois eu inclui um TextBox no FrmPrimeiro e uma Label escrita "nome"
+No FrmUm eu introduzi apenas um Label para receber o texto da TextBox do FrmPrimeiro
+
+
+FrmPrimeiro = 3 botões, 1 label, 1 TextBox
+FrmUm = 1 botão, 1 label
+
+
+>>>>FrmPrimeio<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AplicacoesComMaisDeUmFormulario
+{
+    public partial class FrmPrimeiro : Form
+    {
+        public FrmPrimeiro()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_executar1_Click(object sender, EventArgs e)
+        {
+            FrmUm formulario = new FrmUm(caixa_nome.Text);
+            //essa linha de códio a cima define a programação orientada por objeto
+            formulario.ShowDialog(); // = showdialog é para abrir uma nova "aba", tipo se eu clicar em ajuda vai abrir uma nova janela como o Form1
+        }
+
+        private void FrmPrimeiro_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_executar2_Click(object sender, EventArgs e)
+        {
+            FrmDois formulario = new FrmDois();
+            formulario.ShowDialog();
+
+            //observe que o "formulario" pode ser igual a o da outra classe por as classes serem privadas !!
+        }
+
+        private void btn_exit_Click(object sender, EventArgs e)
+        {
+            //aqui vamos ver um jeito de fechar o aplicativo mesmo tendo formularios escondidos
+            Application.Exit();
+            
+        }
+    }
+}
+
+
+>>>>>FrmUm<<<<<
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AplicacoesComMaisDeUmFormulario
+{
+    public partial class FrmUm : Form
+    {
+        //string valor; = para relembrar, toda variavel criada aqui ela é visivel para tudo que esta em baixo \/ independente se é classe privada ou não
+        //classe estatica tambem é visivel em todo o projeto 
+        public FrmUm(string valor_nome)
+            //repare que coloquei "string valor_nome" isso vai receber o valor do texto da "caixa_texto" do FrmPrimeiro
+
+        {
+            InitializeComponent();
+
+            label_resultado.Text = valor_nome;
+            // repare que aqui eu preciso colocar o "label_resultado" para que o texto apareça no label que coloquei no FrmPrimeiro
+        }
+
+        private void btn_executar3_Click(object sender, EventArgs e)
+        {
+            //fechar o formulario
+            this.Close();
+            //this significa essa classe toda aqui 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
