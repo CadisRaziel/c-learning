@@ -1,0 +1,94 @@
+Nessa pasta criaremos um pequeno aplicativo com a seguinte função
+tera 2 formularios para enviar e retornar informação
+
+Frm1 = 2 botões, 1 label
+Frm2 = 2 botões, 1 textBox
+
+Na pasta que eu criei anteriormente e basicamente quase a mesma coisa porém com a classe estatica que facilita o processo
+aqui vamos ver uma outra maneira de se criar
+
+
+>>>>>Frm1<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace EnvioEretorno
+{
+    public partial class Frm1 : Form
+    {
+        public Frm1()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_avancar_Click(object sender, EventArgs e)
+        {
+            Frm2 formulario = new Frm2(); // = criou o objeto
+            formulario.ShowDialog(); // = mostrar o formulario Frm2
+
+            if (formulario.nome != null)
+                label_texto.Text = formulario.nome;
+            // isso é para caso apertar o cancelar nao apareça nada no label por isso o Null
+        }
+
+        private void btn_sair_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+    }
+}
+
+
+>>>>>Frm2<<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace EnvioEretorno
+{
+    public partial class Frm2 : Form
+    {
+        public string nome { get; set; }
+        //é publico para ter acesso ao Frm1
+        
+        public Frm2()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_ok_Click(object sender, EventArgs e)
+        {
+            //Definir o valor a retornar para o Frm1
+            //caso coloque algo na text_nome vai aparecer no label caso contrario não aparece nada            
+            if (text_nome.Text == "")
+                nome = null;
+            else
+                nome = text_nome.Text;
+
+            this.Close();
+
+        }
+
+        private void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            //Fechar o quadro e não retornar valor
+            nome = null; // valor nulo
+            this.Close();
+        }
+    }
+}
