@@ -1,0 +1,15 @@
+
+Criando barra de Menu's
+Na caixa de ferramentas selecione o "MenuStrip"
+Coloque ele e va clicando nos "digite aqui" e alterando o nome 
+Para colocar teclas de atalho selecione exemplo "exit" e nas propriedades altere a ShortCutKeys !!! 
+Lembre de colocar "separadores" clicando na setinha pra baixo ao clicar no "digite aqui"
+
+
+ShortCuyKeysString é para alterar o nome de ALT+F4 para qualquer outra coisa mais não é interessante mudar
+ShowShortCutKeys sempre deixar True se deixar False o ALT+F4 some !
+ShortCutKeys é para colocar tecla de atalho como Exit  ALT+F4
+
+
+quando clicar duas vezes em algum botao ou alguma outra coisa e nao quiser mexer no código va em eventos e apague o que esta escrito no "click" ou outro que aparecer só vai ter 1 escrito
+
