@@ -1,0 +1,164 @@
+Olhar os formatos de data e hora aqui = https://docs.microsoft.com/pt-br/dotnet/api/system.datetime.tostring?view=netcore-3.1
+
+---------------------------------------------------------------------------------
+Olhar os formatos de data e hora aqui = https://www.c-sharpcorner.com/blogs/date-and-time-format-in-c-sharp-programming1
+
+
+Format	Result
+DateTime.Now.ToString("MM/dd/yyyy")	05/29/2015
+DateTime.Now.ToString("dddd, dd MMMM yyyy")	Friday, 29 May 2015
+DateTime.Now.ToString("dddd, dd MMMM yyyy")	Friday, 29 May 2015 05:50
+DateTime.Now.ToString("dddd, dd MMMM yyyy")	Friday, 29 May 2015 05:50 AM
+DateTime.Now.ToString("dddd, dd MMMM yyyy")	Friday, 29 May 2015 5:50
+DateTime.Now.ToString("dddd, dd MMMM yyyy")	Friday, 29 May 2015 5:50 AM
+DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss")	Friday, 29 May 2015 05:50:06
+DateTime.Now.ToString("MM/dd/yyyy HH:mm")	05/29/2015 05:50
+DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")	05/29/2015 05:50 AM
+DateTime.Now.ToString("MM/dd/yyyy H:mm")	05/29/2015 5:50
+DateTime.Now.ToString("MM/dd/yyyy h:mm tt")	05/29/2015 5:50 AM
+DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")	05/29/2015 05:50:06
+DateTime.Now.ToString("MMMM dd")	May 29
+DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK")	2015-05-16T05:50:06.7199222-04:00
+DateTime.Now.ToString("ddd, dd MMM yyy HH’:’mm’:’ss ‘GMT’")	Fri, 16 May 2015 05:50:06 GMT
+DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss")	2015-05-16T05:50:06
+DateTime.Now.ToString("HH:mm")	05:50
+DateTime.Now.ToString("hh:mm tt")	05:50 AM
+DateTime.Now.ToString("H:mm")	5:50
+DateTime.Now.ToString("h:mm tt")	5:50 AM
+DateTime.Now.ToString("HH:mm:ss")	05:50:06
+DateTime.Now.ToString("yyyy MMMM")	2015 May
+d -> Represents the day of the month as a number from 1 through 31.
+
+dd -> Represents the day of the month as a number from 01 through 31.
+
+ddd-> Represents the abbreviated name of the day (Mon, Tues, Wed, etc).
+
+dddd-> Represents the full name of the day (Monday, Tuesday, etc).
+
+h-> 12-hour clock hour (e.g. 4).
+
+hh-> 12-hour clock, with a leading 0 (e.g. 06)
+
+H-> 24-hour clock hour (e.g. 15)
+
+HH-> 24-hour clock hour, with a leading 0 (e.g. 22)
+
+m-> Minutes
+
+mm-> Minutes with a leading zero
+
+M-> Month number(eg.3)
+
+MM-> Month number with leading zero(eg.04)
+
+MMM-> Abbreviated Month Name (e.g. Dec)
+
+MMMM-> Full month name (e.g. December)
+
+s-> Seconds
+
+ss-> Seconds with leading zero
+
+t-> Abbreviated AM / PM (e.g. A or P)
+
+tt-> AM / PM (e.g. AM or PM
+
+y-> Year, no leading zero (e.g. 2015 would be 15)
+
+yy-> Year, leading zero (e.g. 2015 would be 015)
+
+yyy-> Year, (e.g. 2015)
+
+yyyy-> Year, (e.g. 2015)
+
+K-> Represents the time zone information of a date and time value (e.g. +05:00)
+
+z-> With DateTime values represents the signed offset of the local operating system's time zone from
+
+Coordinated Universal Time (UTC), measured in hours. (e.g. +6)
+
+zz-> As z, but with leading zero (e.g. +06)
+
+zzz-> With DateTime values represents the signed offset of the local operating system's time zone from UTC, measured in hours and minutes. (e.g. +06:00)
+
+f-> Represents the most significant digit of the seconds' fraction; that is, it represents the tenths of a second in a date and time value.
+
+ff-> Represents the two most significant digits of the seconds' fraction in date and time
+
+fff-> Represents the three most significant digits of the seconds' fraction; that is, it represents the milliseconds in a date and time value.
+
+ffff-> Represents the four most significant digits of the seconds' fraction; that is, it represents the ten-thousandths of a second in a date and time value. While it is possible to display the ten-thousandths of a second component of a time value, that value may not be meaningful.
+
+fffff-> Represents the five most significant digits of the seconds' fraction; that is, it represents the hundred-thousandths of a second in a date and time value.
+
+ffffff-> Represents the six most significant digits of the seconds' fraction; that is, it represents the millionths of a second in a date and time value.
+
+fffffff-> Represents the seven most significant digits of the second's fraction; that is, it represents the ten-millionths of a second in a date and time value.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Colocando data e hora na hora que inicializa e criando uma tabela para saber que dia do mes nasceu
+
+
+para exibir a data e hora somente uma Label é necessario ai voce poe o código no initializecomponent"!!!!
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace DataEhora
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+            label_resultado.Text = DateTime.Now.ToString(); // == aqui vai mostra na label ao abrir o programa a data e hora !!!!
+            //label_resultado.Text = DateTime.Now.ToString("yyyy"); = "yyyy" para aparecer só o ano ou "yy" para aparecer só o "20" de 2020
+            //label_resultado.Text = DateTime.Now.ToString("yyyy-MM-dd"); = para que apareça igual americano assim 2020-12-10 
+            //OBS : CUIDADO COM MAIUSCULA E MINUSCULA OLHE ESSE EXEMPLO ("yyyy-mm-dd") aqui o mm é minuto para que ele fique dia tem que ser "MM" maiusculo !!!!
+
+
+        }
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------
+// esse aqui é o programa para ver que dia nasceu se foi segunda ou terça ou quarta etc...
+
+usei 4 label, 3 textbox, 1 botão.
+
+        private void btn_executar_Click(object sender, EventArgs e)
+        {
+            DateTime data = new DateTime(1992, 11, 16);
+            label_resultado.Text = data.DayOfYear.ToString();
+            // olha que interessante, aqui eu posso criar um mecanismo para saber qual dia do ano de 1992 eu nasci !!
+
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int dia = int.Parse(textBox1.Text); // Parse converte uma string em um valor inteiro
+            int mes = int.Parse(textBox2.Text);
+            int ano = int.Parse(textBox3.Text);
+
+            DateTime data = new DateTime(ano, mes, dia);
+            label4.Text = "I was born in a " + data.DayOfWeek;
+
+            // olha só que interessante aqui eu criei uma tabela que eu coloco as datas e aperto o botão para executar
+            // o resultado vai ser o dia "segunda, terça etc..." que eu nasci 
+;        }
+    }
+}
+
+
+
+
