@@ -1,0 +1,106 @@
+MDI = Multiple Document Interface 
+IsMdiContainer = True (sempre colocar fica nas propriedades)
+
+Para colocar o Mdichild no centro da tela é preciso ir nas propriedades e ir na opção "StartPosition"
+StartPosition serve para o Form1 tambem pois ao iniciar o programa nós podemos deixa-lo centralizado !!!!
+
+WindowState = Coloque MAXIMIZED para que o programa criado fique Full Screen "Tela cheia" ao ser iniciado !! 
+
+
+Itens utilizados = Form1 e Frm2Child (2 form's)
+MenuStrip para colocar o Abrir para abrir o Frm2Child
+
+
+
+>>>>>Frm1<<<<<
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MdiProjeto
+{
+    public partial class FrmMain : Form
+    {
+        public FrmMain()
+        {
+            InitializeComponent();
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            //Se eu colocar esse código aqui ele vai abrir no momento que eu abrir o programa
+            //Frm2Child F = new Frm2Child(this);
+            //F.Show();
+
+        }
+
+        private void menu_abrir_Click(object sender, EventArgs e)
+        {
+
+            //1 forma para fazer isso \/
+            //Frm2Child F = new Frm2Child();
+            //F.MdiParent = this; //  = this ele ta falando que ESSE formulario é o MdiParente ou seja o contentor principal "FrmMain" ou Form1
+            //F.Show();
+
+            //----------------------------------------
+            //2 forma para fazer isso (forma mais correta) \/
+            Frm2Child F = new Frm2Child(this);
+            F.Show();
+            //olhe no Frm2child "public Frm2Child(Form FrmParent)"
+
+            //olhe no Frm2child "InitializeComponent();
+                               //this.MdiParent = FrmParent;
+
+        }
+    }
+}
+
+
+
+>>>>> Frm2Child <<<<<
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MdiProjeto
+{
+    public partial class Frm2Child : Form
+    {
+        public Frm2Child(Form FrmParent) // colocar Form FrmParent aqui
+
+        {
+            InitializeComponent();
+            this.MdiParent = FrmParent; // e criar o this aqui dessa forma
+
+
+            //aqui vamos ver o tamanho da tela do programa (lembrando que não é necessario por essa linha de código pois é só alterar o StarPosition e WindowState !!!!
+            //int largura = FrmParent.DisplayRectangle.Width;
+            //int altura = FrmParent.DisplayRectangle.Height;
+            //MessageBox.Show(largura.ToString() + " x " + altura.ToString());
+            
+         
+            
+
+        }
+
+        private void Frm2Child_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
