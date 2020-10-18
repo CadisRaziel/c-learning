@@ -1,0 +1,70 @@
+Sistema para criar arquivos txt (somoente caracter)
+
+1 listbox
+2 botões
+1 textbox
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;// aplicar esse system !! para poder fazer ficheiros <<<<<<<<<<<<<<<<<<<<<<<<< ---- leiaaa !!!!!
+
+namespace FicheirosDeTexto
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_executar_Click(object sender, EventArgs e)
+        {
+
+            // essa função streamwriter só aparece ao colocar using.system.io; (gravar ficheiro de texto)
+            int valor = 100;
+            StreamWriter ficheiro = new StreamWriter(@"C:\Ficheiro\file.txt", true, Encoding.Default);
+
+            //essa instrução abaixo foi para utilizar a opção "FALSE"
+            /* ficheiro.WriteLine("primeira frase.");
+            ficheiro.WriteLine("segunda frase");
+            ficheiro.WriteLine(valor); // não precisa por tostring pois o streamwriter ja faz isso
+            ficheiro.WriteLine(1000); // ou fazer assim sem precisar do int valor que tambem da certo */
+
+            //essa introdução abaixo é para utilizar a opção "TRUE"
+            ficheiro.WriteLine(caixa_texto.Text);
+            ficheiro.Dispose();
+
+            caixa_texto.Text = ""; // para sempre limpar ao apertar o botão
+            caixa_texto.Focus(); // ao limpar a caixa de texto o curso sempre vai para caixa de texto para escrever uma nova frase !!
+
+
+            //dispose = mesma função do close porém ele apaga a memoria do pc aonde tava o ficheiro(apago que digo é limpar a memoria tipo cclean)
+            //append = adicionar dados ou não no ficheiro o "TRUE" tem essa opção
+            //false = vai sempre criar um ficheiro novo  
+            //true =  vai ser adicionado ao texto que existe exemplo ("primeira frase" ao executar vai ficar guardada essa frase se caso eu apagar e colocar ("segunda frase) ele vai manter a primeira e adicionar a segunda !!!!
+            //sempre colocar o "@" (@"C:\file.txt") ou colocar "\\" ("C:\\file.txt") é obrigatorio por @ é mais comun
+        }
+
+        private void btn_abrir_Click(object sender, EventArgs e)
+        {
+            //streamReader é para aparecer o que tem no ficheiro na listbox (ler o ficheiro)
+            StreamReader ficheiro = new StreamReader(@"C:\Ficheiro\file.txt", Encoding.Default); //enconding é tipo utf-8 
+            while (ficheiro.EndOfStream == false)//para ler todas as informações do ficheiro
+            {
+                listBox.Items.Add(ficheiro.ReadLine()); // para mostrar as frases na listbox 
+            }
+            ficheiro.Dispose(); // tira esse objeto(instrução) /\ da memoria do computador (cclean)
+
+            //read = lê somente o numero de caracters ou seja vai aparecer exemplo "25"
+            //readline = lê a linha de texto
+        }
+    }
+}
