@@ -1,0 +1,107 @@
+
+
+Aqui vamos verificar se existe uma pasta ou ficheiro , se não existe ela vai ser criada !
+
+Lembrando que tive problemas com o diretory C:\ ! aprender e corrigir 
+
+
+Usado 3 botões, 1 textbox, 1 DatetimePicker
+
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO; // sempre usar o system IO para criação de ficheiro e pastas !! 
+
+namespace PastasEficheiros
+{
+    public partial class Form1 : Form
+    {
+        //string usada para o btn_executar
+        //string pasta_trabalho = @"C:\trabalho"; // essa string fica acessivel a todo código
+        //string pasta_trabalho = @"C:\trabalho\docs"; se eu colocar \docs ela vai criar a pasta trabalho e dentro dela vai criar a pasta docs
+
+        //string usada para o btn_gravar
+        string pasta_Config = @"C:\config\config.dat"; // sempre colocar o formato do ficheiro exemplo \config.dat
+         
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_executar_Click(object sender, EventArgs e)
+        {
+            //directory só existe por conta do "Using System.IO" !!!! por isso é importante por
+            //não é preciso criar um objeto com o directory
+
+            //determinar se uma pasta existe ou não
+            /*if (Directory.Exists(@"C:\Texte"))
+            {
+                MessageBox.Show("Existe");
+            }
+            else
+            {
+                MessageBox.Show("Não Existe");
+            }
+            */
+
+            //---------------------------------------
+
+            //verificar se a pasta trabalho existe, se não automaticamente criar ela pelo código
+
+            /*if (!Directory.Exists(@"C:\trabalho"))
+            {
+                Directory.CreateDirectory(pasta_trabalho); //usando a string do começo do código !! o código vai criar a pasta trabalho
+            }
+            */
+        }
+
+        private void btn_gravar_Click(object sender, EventArgs e)
+        {
+            //verifica se exsite a pasta config
+            //se não existe, criar a pasta
+
+            if (!Directory.Exists(pasta_Config)) // colocar o "!"
+            {
+                Directory.CreateDirectory(pasta_Config);
+
+                StreamWriter ficheiro = new StreamWriter(pasta_Config, false, Encoding.Default);
+                ficheiro.WriteLine(caixa_texto.Text);
+                ficheiro.WriteLine(DataHora.Value.ToShortDateString());
+
+                ficheiro.Dispose();
+
+                MessageBox.Show("Configurações gravadas com sucesso !");
+                
+            }
+        }
+
+        private void btn_carregar_Click(object sender, EventArgs e)
+        {
+
+            //verificar se o ficheiro config.dat existe 
+            if (!File.Exists(pasta_Config))
+            {
+                MessageBox.Show("Não existe o ficheiro desejado");
+                return;
+            }
+
+
+            //carregamento das configurações 
+            StreamWriter ficheiro = new StreamWriter(pasta_Config);
+            caixa_texto.Text = ficheiro.ReadLine();
+            DataHora.Value = Convert.ToDateTime(ficheiro.ReadLine());
+            ficheiro.Dispose();
+        }
+    }
+}
+
+
