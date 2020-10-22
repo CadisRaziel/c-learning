@@ -1,0 +1,72 @@
+
+
+Aqui vamos ver como salvar algo em pastas e ficheiros
+
+Lembrando que deu problema no diretory C:\ !!! Aprender e corrigir
+
+
+usado 2 botões, 1 textbox, 1 DateTimePicker
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Windows.Forms;
+
+
+namespace PastasEficheiros2
+{
+    public partial class Form1 : Form
+    {
+        string PastaConfig;
+        //string PastaConfig = @"C:\config\config.dat"; 
+        public Form1()
+        {
+            InitializeComponent();
+            PastaConfig = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\"; // @"\" é para colocar uma pasta dentro de outra exemplo @"\config\";
+            //essa opção é para o sistema operacional encontrar a pasta mydocuments ou outra que eu definir ali
+        }
+        
+        private void btn_gravar_Click(object sender, EventArgs e)
+        {
+            GravarConfiguraçoes();
+            MessageBox.Show("Ficheiro gravado com sucesso !");
+                                  
+        }
+
+        private void btn_ler_Click(object sender, EventArgs e)
+        {
+            //verificar se o ficheiro config.dat existe 
+            if (!File.Exists(PastaConfig))
+            {
+                GravarConfiguraçoes();
+            }
+            else
+            {
+                //carregamento das configurações 
+                StreamWriter ficheiro = new StreamWriter(PastaConfig, Encoding.Default);
+                caixa_texto.Text = ficheiro.ReadLine();
+                data_hora.Value = Convert.ToDateTime(ficheiro.ReadLine());
+                ficheiro.Dispose();
+            }
+        }
+
+        private void GravarConfiguraçoes()
+        {
+            if (!Directory.Exists(PastaConfig))
+                Directory.CreateDirectory(PastaConfig);
+
+            StreamWriter ficheiro = new StreamWriter(PastaConfig, true, Encoding.Default);
+            ficheiro.WriteLine(caixa_texto.Text);
+            ficheiro.WriteLine(data_hora.Value.ToLongDateString());
+            ficheiro.Dispose();
+        }   
+
+    }
+}
