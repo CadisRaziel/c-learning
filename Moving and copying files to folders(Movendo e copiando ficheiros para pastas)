@@ -1,0 +1,55 @@
+Aqui vamos ver como copiar ou mover um ficheiro para uma pasta
+
+
+lembrando que deu problema no diretory C:\ (coloquei C:\Ficheiro !! corrigir e aprender
+
+usado 1 botão, 1 listbox
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Windows.Forms;
+
+namespace ApagarPastaFicheiro
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            //movendo ficheiros para pastas (ficheiros são os .doc, .txt etc..)
+            //File.Copy(@"C:\dados.txt", @"C:\Ficheiro\dados.txt");
+            //ou
+            //File.Move(@"C:\dados.txt", @"C:\Ficheiro\dados.txt");
+            //File.Move(@"C:\file.txt", @"C:\Ficheiro\file.txt");
+
+            //ou para varios ao mesmo tempo
+
+
+            string[] lista_ficheiros = Directory.GetFiles(@"C:\", "*.txt"); //colocar * para que ele idenfitique todos txt
+
+            foreach (string item in lista_ficheiros)
+            {
+                //listBox1.Items.Add(item); // foreach para que todos os ficheiros txt apareça na listbox
+                File.Move(item, @"C:\Ficheiro\" + Path.GetFileName(item));// aqui vai buscar através desse método vai buscar apenas o nome do ficheiro "Dados.txt" e não pastas
+                //path.getfilenameWithoutExtension vai buscar o nome "Dados" e ignorar o "txt"
+                //path.getdirectoryname ele vai buscar o nome "C:\documentos\lixo"
+            }
+
+
+            MessageBox.Show("Deu certo !");
+        }
+    }
+}
