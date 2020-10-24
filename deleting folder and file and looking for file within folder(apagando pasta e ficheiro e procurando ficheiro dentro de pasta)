@@ -1,0 +1,59 @@
+Deletando ficheiros de dentro de pasta
+deletando ficheiro
+e procurando ficheiro
+
+usado 1 botão e 1 listbox
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ApagarPastasEficheirosPT2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //apagar ficheiro
+            /* File.Delete(@"C:\dados.txt");
+             MessageBox.Show("Deu certo "); */
+
+            //--------------------------------------------------
+            //apagar pasta com ficheiros dentro
+            /* if(Directory.Exists(@"C:\Ficheiro"))
+                Directory.Delete(@"C:\Ficheiro", true); // o true serve para apagar os arquivos tipo .doc .txt .png etc
+            MessageBox.Show("deu certo"); */
+
+            //-----------------------------------
+            //apagando uma pasta com varios ficheiros dentro .doc .txt. xml .jpg
+            string[] ficheiro = Directory.GetFiles(@"C:\dados"); // ,"I*.*" = para buscar os ficheiros começado com a letra I
+
+            foreach (string item in ficheiro)
+            {
+                listBox1.Items.Add(Path.GetFileNameWithoutExtension(item)); // = para procurar apenas o nome do arquivo
+                // listBox1.Items.Add(Path.GetFileName(item)); // = para procurar o nome do arquivo completo exemplo img.jpg, texto.txt
+                // listBox1.Items.Add(Path.GetDirectoryName(item)); = para buscar o nome da pasta
+
+                //AddRange vai aparecer tudo que esta dentro da pasta dados com nome dado "Ficheiro" aqui no código (não serve no foreach)
+            }
+            
+            
+             
+                
+            MessageBox.Show("deu certo");
+        }
+    }
+}
