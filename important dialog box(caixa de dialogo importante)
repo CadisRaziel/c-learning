@@ -1,0 +1,59 @@
+caixa de dialogo 
+Para que ao aperta o botão sair perguntar se ele quer sair ou não
+A caixa de dialogo vai ter um titulo uma mensagem e um icone !
+
+CAIXA DE DIALOGO È UTILIZADA MUITO AO COLOCAR BOTOES SAIR OU SALVAR OU ERROS ETC....
+
+utilizado apenas 1 botão
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CaixaDIalogoPT1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //------------- PRIMEIRO EXEMPLO ---------------------
+            //MessageBox simples 
+            //MessageBox.Show("OI");
+            //------------- SEGUNDO EXEMPLO ---------------------
+            //MessageBox com Mensagem e TITULO DA BOX
+            //MessageBox.Show("texto da mensagem", "Titulo"); // primeiro coloque a mensagem em segundo o titulo da box !
+            //------------- TERCEIRO EXEMPLO ---------------------
+            //MessageBox com Mensagem, Titulo, Botão de sair ou não ou cancelar e Icone ! 
+            //MessageBox.Show("Você realmente quer sair ?",
+            //                "Aviso",
+            //                MessageBoxButtons.YesNoCancel,
+            //                MessageBoxIcon.Question); // posso por as linhas de código assim para facilitar a leitura !!
+            //MessageBoxButtons.YesNoCancel = vai aparecer SIM - NÂO - CANCELAR
+            //MessageBoxButtons.YesNoCancel lembrando que ele aparece em sequencia YES NO ou YES NO CANCEL ou YES CANCEL
+            //MessageBoxIcon.Question = para escolher o icone pode ser o question ou outro que eu preferir ao apertar . apos o MessageBoxIcon.
+            //OBS2 Lembrando sempre colocar nessa sequencia o código
+            //------------- QUARTO EXEMPLO ---------------------
+            //MessageBox com resultado (exemplo ao clicar no botão sair aparecer mais um dialogo perguntando se realmente ele tem certeza! )
+            if (MessageBox.Show("Deseja sair da aplicação ?", "SAIR", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return; //COLOQUE O RETURN AQUI PARA QUE AO APERTA "NÃO" ELE NÂO FECHE O PROGRAMA!!!!!!!!
+
+            //fecha a aplicação
+            Application.Exit();
+            
+
+
+        }
+    }
+}
+
+
