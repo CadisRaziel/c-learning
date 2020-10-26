@@ -1,0 +1,119 @@
+
+Aqui vamos ver como se cria caixa de dialogo para Abrir documento, Salvar documento e abrir caixa de cores
+lembrando que no inicio tem o código da primeira parte do estudo
+
+!!
+
+foi usado 5 botões e 1 picturebox
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO; // lembre-se de colocar isso para poder gravar ficheiros !!!
+using System.Windows.Forms;
+
+namespace CaixaDIalogoPT1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //------------- PRIMEIRO EXEMPLO ---------------------
+            //MessageBox simples 
+            //MessageBox.Show("OI");
+            //------------- SEGUNDO EXEMPLO ---------------------
+            //MessageBox com Mensagem e TITULO DA BOX
+            //MessageBox.Show("texto da mensagem", "Titulo"); // primeiro coloque a mensagem em segundo o titulo da box !
+            //------------- TERCEIRO EXEMPLO ---------------------
+            //MessageBox com Mensagem, Titulo, Botão de sair ou não ou cancelar e Icone ! 
+            //MessageBox.Show("Você realmente quer sair ?",
+            //                "Aviso",
+            //                MessageBoxButtons.YesNoCancel,
+            //                MessageBoxIcon.Question); // posso por as linhas de código assim para facilitar a leitura !!
+            //MessageBoxButtons.YesNoCancel = vai aparecer SIM - NÂO - CANCELAR
+            //MessageBoxButtons.YesNoCancel lembrando que ele aparece em sequencia YES NO ou YES NO CANCEL ou YES CANCEL
+            //MessageBoxIcon.Question = para escolher o icone pode ser o question ou outro que eu preferir ao apertar . apos o MessageBoxIcon.
+            //OBS2 Lembrando sempre colocar nessa sequencia o código
+            //------------- QUARTO EXEMPLO ---------------------
+            //MessageBox com resultado (exemplo ao clicar no botão sair aparecer mais um dialogo perguntando se realmente ele tem certeza! )
+            if (MessageBox.Show("Deseja sair da aplicação ?", "SAIR", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return; //COLOQUE O RETURN AQUI PARA QUE AO APERTA "NÃO" ELE NÂO FECHE O PROGRAMA!!!!!!!!
+
+            //fecha a aplicação
+            Application.Exit();
+            
+
+
+        }
+        
+        //------------------------------------------- PARTE DOIS = ABRIR, SALVAR, CAIXA DE CORES -----------------------------------------------------------------------
+        
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //OpenFileDialog é quando a gente salva algo e aparece aquela caixa perguntando em qual pasta etc como se fosse salvar algum download
+            
+            //aqui nós vamos abrir uma caixa de dialogo 
+            //vamos inserir os tipos de files "txt, png, jpg, doc, dat enfim..."
+            OpenFileDialog abrir = new OpenFileDialog();
+            abrir.Title = "Escolher ficheiro"; // aqui é o titulo que fica na barra em cima
+            abrir.InitialDirectory = @"C:\"; // aqui eu vou escolher em que pasta ela sempre vai iniciar
+            abrir.Filter = "Jpg Files (*.jpg) | *.jpg | Bmp Files (*.bmp) | *.bmp | Png Files(*.png) | *.png"; // aqui é um filtro para escolher procurar ficheiros txt ou doc ou jpg ou png enfim... (tem que por um por um)
+
+            //aqui \/ vamos abrir uma imagem com a caixa de dialogo criada acima /\
+
+            if(abrir.ShowDialog()==DialogResult.Cancel) return; // essa função vai abrir a caixa para salvar ou abrir documentos
+            pictureBox1.BackgroundImage = Image.FromFile(abrir.FileName); // aqui vai aparecer a imagem que eu escolher 
+            abrir.Dispose();
+            //MessageBox.Show("Deu certo" + abrir.FileName); só para ver se deu certo
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            //aqui nós vamos salvar arquivos
+            SaveFileDialog abrir = new SaveFileDialog();
+            abrir.Title = "Salvar";
+            abrir.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); // aqui é para salvar no diretorio dos meus documentos ! 
+            abrir.Filter = "File txt(*.txt) | *.txt"; // sempre definir o filtro para poder salvar jpg,png,doc,dat,txt enfim...
+            if (abrir.ShowDialog() == DialogResult.Cancel) return; // sempre colocar para abrir a caixa de salvar
+            // tudo que eu escrever daqui para baixo é para salvar o ficheiro (lembre de por o using system.IO la em cima !!)
+            string salvar = abrir.FileName;
+            StreamWriter save = new StreamWriter(salvar, false, Encoding.Default);
+            save.WriteLine("");// aqui se eu escrever algo vai aparecer dentro do ficheiro salvo melhor deixar em branco
+            save.Dispose();
+
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //aqui nós vamos criar pastas (ele vai aparecer uma caixa de dialogo diferente com todas as pastas)
+            FolderBrowserDialog pasta = new FolderBrowserDialog();
+            pasta.SelectedPath = @"C:\";
+            if (pasta.ShowDialog() == DialogResult.Cancel) return; 
+
+
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //aqui vamos abrir uma caixa de dialogo para escolher uma cor para a picturebox
+            ColorDialog caixa = new ColorDialog();
+            caixa.Color = pictureBox1.BackColor; // quando clicar na amarela exemplo e der ok e voltar para escolher outra cor ele vai continuar ta selecionando o amarelo
+            if (caixa.ShowDialog() == DialogResult.Cancel) return;
+
+            pictureBox1.BackColor = caixa.Color;
+        }
+    }
+}
