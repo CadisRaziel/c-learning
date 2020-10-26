@@ -1,0 +1,144 @@
+
+Aqui vamos ver como podemos fazer varios tipos de listas para substituir os arrays
+
+
+Utilizado 4 botões e 1 listbox
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Colecoes
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //array
+            //string[] nomes;
+            //nomes = new string[5]; // aqui é criado a quantidade de array que vai guardar
+            // no caso será 4 pois começa sempre do 0 exemplo 0 1 2 3 4 = deu 5
+
+            //nomes[0] = "Vitor";
+            //nomes[1] = "Brussolo";
+            //nomes[2] = "Zerbato";
+            //nomes[3] = "Giovanna";
+            //nomes[4] = "Ariella";
+
+            //lista.Items.AddRange(nomes); // para apresentar todos os nomes na listbox   
+
+            //-------------------------------------------------------------------------------
+
+            //coleção - List (lista) >>> é mais facil que array e mais utilizada <<<
+            List<String> nomes = new List<string>();//não precisa colocar a quantidade de itens como no array acima !!!
+            nomes.Add("Vitor");
+            nomes.Add("Brussolo");
+            nomes.Add("Zerbato");
+            nomes.Add("Giovanna");
+            nomes.Add("Ariella");
+
+
+            //nomes.Remove("Vitor"); caso queira remover um nome ao invez de apaga-lo 
+            //nomes.RemoveAt(5); caso queira remover o numero 10 da lista sem apaga-lo
+
+            foreach (string item in nomes) //aqui não da para colocar lista.Items.AddRange(nomes);
+            {
+                lista.Items.Add(item); //é preciso fazer foreach e por apenas "Add" e não "AddRange"
+            }
+
+            //MessageBox.Show(nomes.Count.ToString()); para saber quantos nomes tem
+            //use o messagebox para ver a quantidade de recurso que tem ao por nomes.
+
+
+
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //------------------------------------------------------------------
+            // outra forma de fazer o LIST (list in line)
+            List<int> lista_inteiros = new List<int>() { 10, 20, 30 };
+            foreach (int valor in lista_inteiros)
+            {
+                lista.Items.Add(valor);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //------------------------------------------------------------------
+            // outra forma de fazer o LIST (Não duplica os valores ou itens dentro)
+            HashSet<string> lista_nomes = new HashSet<string>()
+            {
+                "Vitor", "Brussolo", "Zerbato", "Giovanna", "Ariella"
+            };//lembrando que o ";" no hashSet é colocado aqui !
+
+            foreach (string nome in lista_nomes)
+            {
+                lista.Items.Add(nome);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //------------------------------------------------------------------
+            // outra forma de fazer o LIST (Dicionario permite definir o valor de cada item que é inserido e tambem definir o indice)
+            Dictionary<int, string> lista_dicionario; // pode ser assim tambem Dictionary<string, string> lista_dicionario;
+            lista_dicionario = new Dictionary<int, string>(); // a criação do objeto aqui é diferente como pode ver
+            lista_dicionario.Add(10, "vitor");
+            lista_dicionario.Add(20, "brussolo");
+            lista_dicionario.Add(30, "zerbato");
+
+            MessageBox.Show(lista_dicionario[0]); // aqui vai dar erro, lembrando que o int ali em cima "10","20","30", é a linha em que se encontra a string Vitor ou brussolo ou zerbato!
+            //então os numeros colocados se comportao como chave se eu colocar 10 vai aparecer o nome Vitor pois a chave 10 é a linha que ele esta
+
+            //aqui é para mostrar como linkar um botão
+            Dictionary<string, string> botoes_dicionario;
+            botoes_dicionario = new Dictionary<string, string>();
+            botoes_dicionario.Add("button4", "Dictionary");
+            botoes_dicionario.Add("button3", "Hash Set");
+            botoes_dicionario.Add("button2", "list inline");
+
+            MessageBox.Show(botoes_dicionario["button3"]);
+
+            //aqui é para mostrar como fazer interações do tipo (mostrar só a chave ou mostrar só o valor) 
+            Dictionary<string, string> botoes2;
+            botoes2 = new Dictionary<string, string>();
+            botoes2.Add("button4", "Dictionary"); // botoes2.Add("button4" = CHAVE(key), "Dictionary" = VALOR(Value))
+            botoes2.Add("button3", "Hash Set");
+            botoes2.Add("button2", "list inline");
+            foreach (KeyValuePair<string,string> item in botoes2)// quando for no modo Dictionary tem que por KeyValuePair dentro do foreach !!!!
+            {
+                lista.Items.Add(item.Key);// posso adicionar as chaves
+                lista.Items.Add(item.Value); //ou posso adicionar os valores
+            }
+
+
+            //exemplo só para mostrar como encontra a chave caso precise
+            if(botoes2.ContainsKey("button3"))
+            {
+                MessageBox.Show("deu certo foi encontrada");
+            }
+            else
+            {
+                MessageBox.Show("Não foi encontrada");
+            }
+
+
+
+        }
+    }
+}
