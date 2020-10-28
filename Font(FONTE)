@@ -1,0 +1,38 @@
+
+Alterando a fonte as letras no código
+usado 1 botao e 1 label
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TiposDeLetras
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //aqui vamos criar uma fonte apartir de um código (lembrando que nas propriedades tambem tem como alterar)
+            //porém se eu crio um objeto como criei aqui e defini como "letra" possu usar "letra" em qualquer parte do código
+            Font letra = new Font("Helvetica", 14, FontStyle.Italic | FontStyle.Bold, GraphicsUnit.Pixel);
+                                                  // olha só que legal aqui /\ podemos colocar italico e negrito !! lembre de por o "|" entre eles  
+            label1.Font = letra;
+
+            //aqui vamos alterar a cor
+            label1.ForeColor = Color.Aquamarine;
+
+        }
+    }
+}
