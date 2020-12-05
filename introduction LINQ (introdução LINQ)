@@ -1,0 +1,80 @@
+introdução ao linq, adicionado na net.framework 3.5
+Podemos utilizar o linq para : ocasioes de mecanismo de escrita de codigo semelhante o sql para poder obter resultado a partir de coleção
+ex : imagine uma lista de clientes criado dentro da aplicação c# e queremos procurar todos os clientes que tem a palavra silva
+no sql vimos que tinhamos que comunicar primeiro com a base de dados e depois usavamos o sql para ir busca a operação filtrada
+
+no linq permite fazer algo semelhante mais para informação que existe dentro da nossa aplicação
+
+
+utilizado : 1 botao, 1 textbox
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TesteLinQ
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<string> lista_nomes = new List<string>();
+            lista_nomes.Add("vitor");
+            lista_nomes.Add("rosana");
+            lista_nomes.Add("monique");
+            lista_nomes.Add("michele");
+            lista_nomes.Add("giovanna");
+            lista_nomes.Add("ariella");
+            lista_nomes.Add("anastacio");
+
+
+            //utilizando o linq //cuidado com as letras maiuscula e minuscula ele é case sensitive
+            var lista_final = lista_nomes.Where(i => i.StartsWith("a")); //veja que o Where é igual do SQL
+                                                //o "i" pode ser uma letra qualquer. exemp: a => a
+            foreach (var item in lista_final)
+                listBox1.Items.Add(item); 
+            //var = pode significar uma lista de string, uma lista de valor inteiro, uma lista de valor de objetos etc.. define uma lista 
+            //olha que interessante ao colocar lista_nome. vai aparecer uma serie de metodos mas só os que tem <> na frente é relacionado ao linq
+
+            //ao invés de percorrer toda a lista como o foreach abaixo faz \/
+            //o linq só vai percorrer os dados que começam com a letra "a" como eu defini acima
+            //isso deixa o programa mais rapido e mais otimizado
+            //=========================================================================
+
+            //jeito errado de fazer procura \/
+            //sem utilizar o linq(procura nomes com a inicial "A") \/
+            /*foreach(string item in lista_nomes)
+            {
+                if (item.StartsWith("a"))
+                    listBox1.Items.Add(item);
+            }
+            */
+
+
+
+
+
+
+            //aproveitando veja como mostrar nomes ou outras coisa no listbox \/
+            //foreach (string item in lista_nomes)
+                //listBox1.Items.Add(item);
+
+        }
+    }
+}
