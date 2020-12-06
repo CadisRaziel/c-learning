@@ -1,0 +1,69 @@
+exemplos de como utilizar o linq
+
+usado 1 botão e 1 textbox
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace LinqPT2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            #region lista
+            //exemplo de utilização de linq
+            List<string> lista_nomes = new List<string>();
+            lista_nomes.Add("Vitor");
+            lista_nomes.Add("monique");
+            lista_nomes.Add("rosana");
+            lista_nomes.Add("michele");
+            lista_nomes.Add("ariella");
+            lista_nomes.Add("anastacio");
+            lista_nomes.Add("giovanna");
+            lista_nomes.Add("momoa");
+            lista_nomes.Add("batman");
+            lista_nomes.Add("aquaman");
+            #endregion
+
+            //var final = lista_nomes.Where(i => i.StartsWith("a"));
+            
+            //outro metodo de escrever a linha acima, veja no codigo abaixo
+
+            //forma mais correta de escrever o linq \/
+            /* var final = from i in lista_nomes //fonte onde vai buscar a informação
+                        where i.StartsWith("b")//criterio para efetuar pesquisa do caracter 
+                        select i;
+
+            foreach (var item in final)
+                listBox1.Items.Add(item); */
+
+            //-----------------------OUTRAS MANEIRAS-----------------------------------
+            //*outro metodo de escrever a linha acima, veja no codigo abaixo
+            //listBox1.Items.Add(lista_nomes[0]); -> podemos criar indices tambem, porém teremos que por o numero
+            //o 0 vai apresentar o 1 nome da lista
+
+            //*outro metodo de escrever a linha acima, veja no codigo abaixo
+            //listBox1.Items.Add(final.First()); -> vai aparecer os nome com inicial "b" como defini acima
+
+            //*outro metodo de escrever a linha acima, veja no codigo abaixo
+            //para procurar o primeiro nome com a letra "b"
+            List<string> fim = (from i in lista_nomes
+                                  where i.StartsWith("b")
+                                  select i).ToList<string>();
+            listBox1.Items.Add(fim[0]);
+        }
+    }
+}
