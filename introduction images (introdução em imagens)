@@ -1,0 +1,70 @@
+
+não importar imagens pelas propriedades 
+ir na pasta do projeto e criar uma pasta dentro do bin > Debug > criar pasta "imagens"
+para assim com o codigo chamar as imagens
+e o mais correto a fazer 
+Location o X = é o numero de pixel na horizontal sempre contando do canto superior esquerdo para o direito
+Location o Y = é o numero de pixel na vertical sempre contando do canto superior esquerdo para baixo
+//------------------------------------------------------------------------------------------------------
+redimensionar
+backgroundimagelayout = vai definir como a imagem vai ser mostrada
+none = fica com as dimensoes da foto se for 600x400 sera esse o tamanho (presta atenção)
+tile = vai dimensionar do tamanho do projeto se for 1300x900 ela vai ficar deste tamanho porém se a foto for 600x400 ela vai se repetir para ficar do tamnho de 1300x900
+center = vai ser centrada (se for menor que o programa ficara pequena)
+stretch = vai esticar a imagem para ela se ajustar ao tamanho do programa se for 1300x900 e a foto for 600x400 ela vai se esticar para ficar 1300x900(mais utilizado)
+zoom = conforme a largua e a altura aumenta ela vai se esticando (ninguem usa)
+//------------------------------------------------------------------------------------------------------
+Caso importar uma imagem pelo BackGroundImage deletar a pasta que ela criar no gerenciador de soluções "resources" e ir em properties e "recursos" e remover o recurso
+se continuar dando erro siga as instruções de resolução que o c# da
+//------------------------------------------------------------------------------------------------------
+
+*carregando a imagem de fundo \/
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Design;// SISTEMA PARA IMAGENS E DESENHOS
+using System.Drawing.Drawing2D;// SISTEMA PARA IMAGENS E DESENHOS
+using System.Drawing.Imaging;// SISTEMA PARA IMAGENS E DESENHOS
+using System.Drawing.Printing;// SISTEMA PARA IMAGENS E DESENHOS
+using System.Drawing.Text;// SISTEMA PARA IMAGENS E DESENHOS
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ProjetoImagem
+{
+    public partial class Form1 : Form
+    {
+
+        string pasta_imagen = ""; //variavel para criar o caminho da imagem
+        Image img_fundo; //carreguei a imagem dentro dessa string e posso usa-la aonde quiser como img_fundo
+
+        //===========================================================
+        public Form1()
+        {
+            InitializeComponent();//não esquecer de colocar + nome da pasta que esta dentro do debug que contem as imagens @"\imagen\
+            pasta_imagen = Application.StartupPath + @"\imagen\"; //aqui o sistema vai pegar a variavel e transformar em caminho para a imagem
+                                                         //com isso acima quando o cliente fazer o dowload nao havera problema com o caminho da imagen
+
+
+            //carregamento da imagem de fundo
+            // MessageBox.Show(pasta_foto); // para ver qual é o caminho da pasta que esta dando
+
+            //quando criar um objeto Image não precisar por new image, pode fazer tudo direto
+            //não podemos simplesmente por o caminho da pasta ali no FromFile() pois se algum cliente faz o download do projeto a pasta pode nao ser a mesma
+            img_fundo = Image.FromFile(pasta_imagen + "foto_1.jpg"); //por o nome exatamente igual
+            this.BackgroundImage = img_fundo;                     
+            //===========================================================
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+                    
+        }
+    }
+}
+
