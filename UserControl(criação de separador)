@@ -1,0 +1,153 @@
+
+Criando separadores com UserControl
+
+1 passo, crie um user control
+2 passo, redmensione a form que vai aparecer
+3 passo crie o codigo
+
+
+
+
+o codigo abaixo é da tabela usercontrol1
+ele consegue criar prorpiedades, como por exemplo o AlphaClaro e AlphaEscuro
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace usercontrolteste
+{
+    public partial class UserControl1 : UserControl
+    {
+        //propriedades
+        private byte _alfaEscuro = 100; //*linha de cima
+        private byte _alfaClaro = 200; //*linha de baixo 
+        private Color _corEscura = Color.Black; //*linha de cima
+        private Color _corClara = Color.White; //*linha de baixo
+
+
+        //-----------------------------------------------------------
+
+        //*implementa as propriedades
+        //*para que possa alterar diretamente no painel das propriedades
+        public byte AlphaEscuro
+        {
+            //*para aparecer AlphaEscuro nas propriedades !!!
+            //*e poderemos colocar o numero que definimos ali em cima /\
+            //*lembrar de ir na caixa de ferramentas e arrastar o controlbox1 para o form1
+
+            //*get = buscar o valor da propriedade
+            get { return _alfaEscuro; }
+
+            //*set = vai permitir definiar as propriedades (alterar os valores)
+            set
+            { 
+                _alfaEscuro = value;
+                UserControl1_Resize(this, EventArgs.Empty);
+                //*para que ao alterar nas propriedades o visual studio automaticamente mude
+                //*exemplo quero mudar da cor do preto para o branco colocando esse codigo aqui o visual studio vai fazer a alteração
+                //*quando eu alterar nas propriedades
+
+            }
+                    
+                               
+        }
+               
+        
+        public byte AlphaClaro
+        {
+            //*Para aparecer nas propriedades como o AlphaEscuro
+            get { return _alfaClaro; }
+            set 
+            { 
+                _alfaClaro = value;
+                UserControl1_Resize(this, EventArgs.Empty);
+            }
+        }
+
+
+        //-----------------------------------------------------------
+        public Color CorEscura
+        {
+            get { return _corEscura; }
+            set 
+            { 
+                _corEscura = value;
+                UserControl1_Resize(this, EventArgs.Empty);
+            }
+        }
+
+        public Color CorClara
+        {
+            get { return _corClara; }
+            set 
+            { 
+                _corClara = value;
+                UserControl1_Resize(this, EventArgs.Empty);
+            }
+        }
+
+
+        //======================================================
+        //*separador horizontal
+        //======================================================
+        public UserControl1()
+        {
+            InitializeComponent();
+            //caracteristicas genericas
+            this.BackColor = Color.Transparent;
+            this.BackgroundImageLayout = ImageLayout.None;
+            UserControl1_Resize(this, EventArgs.Empty);
+        }
+        //======================================================
+        private void UserControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        //======================================================
+        private void UserControl1_Resize(object sender, EventArgs e)
+        {
+            //*desenhar as linhas(aspecto visual)
+            this.Height = 4; //para que o form1 do usercontrol(design) fique com 4 pixel
+
+            //*criar as linhas
+            Bitmap imgback = new Bitmap(this.Width, this.Height); //para que busque automaticamente a altura e largura do usercontrol
+            Graphics desenhador = Graphics.FromImage(imgback);
+
+            //*criar a pen(caneta)
+            Pen corEscura = new Pen(Color.FromArgb(_alfaEscuro, _corEscura), 1); //* 1 é a expessura da linha
+            Pen corClara = new Pen(Color.FromArgb(_alfaClaro, _corClara), 1);
+
+            //*desenha as linhas escuras
+            desenhador.DrawLine(corEscura, new Point(1, 1),
+                                           new Point(this.Width - 3, 1));
+
+            desenhador.DrawLine(corEscura, new Point(1, 1),
+                                           new Point(1, 2));
+
+            //--------------------------------
+
+            //*desenha as linhas claras
+            desenhador.DrawLine(corClara, new Point(2, 2),
+                                          new Point(this.Width-2,2));
+
+            desenhador.DrawLine(corClara, new Point(this.Width -2, 1),
+                                          new Point(this.Width -2, 2));
+                                         
+
+
+
+
+            //*mostra as linhas
+            this.BackgroundImage = imgback;
+        }
+    }
+}
