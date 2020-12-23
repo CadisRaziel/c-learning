@@ -1,0 +1,262 @@
+Criando um modo de impressão
+foi utilizado 3 botoes, 1 listbox
+recursos usado caixa_setup = PrintDialog
+caixa_visualizacao = PrintPreViewDialog
+documento = PrintDocument
+visualizar = PrintPreViewControl
+(os mais usados sao os dialog's)
+
+
+nenhuma impressão foi feita a partir de um documento na tela
+foi tudo criado em codigo
+
+baixamos e utilizamos a impressoa virtual (Bullzip)
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Drawing.Printing; //*sempre colocar esse using para impressão, (obs ele aparece como metodo ao criar o evento)
+
+namespace impressao1
+{
+    public partial class Form1 : Form
+    {
+        //*
+        int largura;
+        int altura;
+
+        //*criando multiplas paginas
+        Font letra;
+        SolidBrush cor;
+        int y = 50;
+        int numero_frases = 1;
+
+        //-------------------------------------
+        //*PrintPreViewControl
+        int pagina = 0;
+
+        //*conta numero de paginas
+        int paginas_criadas;
+        //-------------------------------------
+
+        //======================================================
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        //======================================================
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //*documento = (PrintDocument)
+
+
+            //----------------------------------------
+            //o codigo abaixo vai mostar na listbox(lista) as cordenadas x e y e altura e largura da listbox
+            //lista.Items.Add(documento.DefaultPageSettings.Bounds.X.ToString());
+            //lista.Items.Add(documento.DefaultPageSettings.Bounds.Y.ToString());
+            //lista.Items.Add(documento.DefaultPageSettings.Bounds.Width.ToString());
+            //lista.Items.Add(documento.DefaultPageSettings.Bounds.Height.ToString());
+
+            //----------------------------------------
+
+            //*preparar a impressão
+            largura = documento.DefaultPageSettings.Bounds.Width;
+            altura = documento.DefaultPageSettings.Bounds.Height;
+            
+            //------------------------------------------------
+            //*imprimindo multiplas paginas
+            letra = new Font("Arial", 40, FontStyle.Regular, GraphicsUnit.Pixel);
+            cor = new SolidBrush(Color.Black);
+            y = 100;
+            //numero_frases = 1;            
+            //pagina = 0; //=PrintPreViewControl
+
+
+            //*imprimir na horizontal
+            documento.DefaultPageSettings.Landscape = true;
+
+
+            //------------------------------------------------
+
+
+            //------------------------------------------------
+
+            //*abrir o quadro de configuração da impressora (sempre colocar antes do documento.print())
+            //if (caixa_setup.ShowDialog() == DialogResult.Cancel)
+            //return;
+            //else //*para que as configurações sejam aplicadas
+            //documento.PrinterSettings = caixa_setup.PrinterSettings;
+
+            //------------------------------------------------
+
+
+            //*utilizando o PrintPreVriweControl (não é o dialog)
+            //paginas_criadas = 0;
+            //visualizar.Document = documento;
+            //visualizar.InvalidatePreview();
+
+            //-------------------------------------------------
+
+            //*utilizando o PrintPreViewDialog
+            //*somente precisa fazer isso, pois ela ja tem todos os mecanismo que criamos na PrintPreviewControl
+            caixa_visualizacao.Document = documento;
+            caixa_visualizacao.ShowDialog();
+
+             
+            //-------------------------------------------------
+
+            //*da a instrução para iniciar a impressão (fica sempre por ultimo)
+            //*esse codigo abaixo imprime tudo que estiver no documento_PrintPage
+            //documento.Print();
+
+        }
+
+        //======================================================
+        private void documento_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            //*esse evento imprime os dados do documento
+
+            //*criando um texto por codigo para apresentar na impressão
+            //string texto = "Essa é a primeira impressão que estou realizando no c#";
+            //Font letra = new Font("Arial", 14, FontStyle.Bold, GraphicsUnit.Pixel);
+            //SolidBrush cor = new SolidBrush(Color.Black);
+            //Rectangle rect = new Rectangle(0, 100, largura, 30);
+            //StringFormat formato = new StringFormat();
+            //formato.Alignment = StringAlignment.Center;
+            //formato.LineAlignment = StringAlignment.Center;
+
+            //List<string> lista = new List<string>()
+            //{
+            //   "frase numero um",
+            //   "frase numero dois",
+            //   "frase numero tres",
+            //   "frase numero 4",
+            //   "frase numero 5",
+            //   "frase numero 6"
+            //};
+
+            //*instruções para imprimir sem pré visualização
+            //e.Graphics.DrawString(texto.ToUpper(), letra, cor,rect,formato);
+
+
+            //*apresentar frases da list<string>
+            //*essas coordenadas vai mostrar as frases ao lado direito <<
+            //*para alterar as coordenadas(os paragrafos) que a frase vai aparecer  é só alterar o y+=20 para 40 ou 100 enfim.
+            //int y = 140;
+            //foreach(string frase in lista)
+            //{
+            //    e.Graphics.DrawString(frase, letra, cor, new Point(100, y));
+            //    y += 20; 
+            //}
+
+            //y += 50;
+            //formato.Alignment = StringAlignment.Near; //*para se ajustar ao retangulo criado abaixo \/ (near = alinhas a esquerda) 
+            //formato.LineAlignment = StringAlignment.Near;
+            //string texto1 = "esse texto vai ser apresentado dentro de uma caixa de texto com o mesmo sendo formatadoesse texto vai ser apresentado dentro de uma caixa de texto com o mesmo sendo formatadesse texto vai ser apresentado dentro de uma caixa de texto com o mesmo sendo formatadesse texto vai ser apresentado dentro de uma caixa de texto com o mesmo sendo formatadesse texto vai ser apresentado dentro de uma caixa de texto com o mesmo sendo formatadesse texto vai ser apresentado dentro de uma caixa de texto com o mesmo sendo formatad";
+            //e.Graphics.DrawString(texto1, letra, cor, new Rectangle(100, y, 600, 200), formato);
+
+            //*para mostrar como o codigo acima /\ mas dentro de um retangulo
+            //e.Graphics.DrawRectangle(new Pen(Color.Red, 2), new Rectangle(100, y, 600, 200));
+
+
+
+            //--------------------------------------------
+
+            //*imprimindo multiplas paginas
+            //while(numero_frases <= 100)
+            {
+                //e.Graphics.DrawString("Frase numero " + numero_frases.ToString(), 
+                                      //letra, cor, new Point(50, y));
+                //y += 30; //=paragrafo
+                //numero_frases++; //=se nao colocar ++ o while fica num circulo eterno, e o ++ vai fazer o seguinte do numero 1 vai para o numero 2 e assim em diante.
+
+                //*criando a segunda pagina
+                //*se o documento chegou ao final da folha
+                //if(y >= altura - 50) //=quando atingir o final da folha ele cria uma margem de -50 pixel nao deixando a frase ir ate o limite da folha
+                {
+                    //*muda de pagina
+                    //y = 50;
+                    //e.HasMorePages = true; //=hasmorepages = vai continuar sendo impresso e cria a 2 pagina
+
+                    //*visualizar somente paginas criadas PrintPreViewControl
+                    //paginas_criadas++; //=vai somente mostrar as paginas criadas
+
+                    //break; //=while sempre tem que por break para parar o ciclo
+
+                    //*OBSERVAÇÃO IMPORTANTE
+                    //*SEMPRE QUANDO O HasMorePages estiver true ele vai fazer o ciclo while sem parar
+                    //*OU SEJA OS METODOS QUE ESTIVER ABAIXO DESSE CODIGO \/
+                    //*NAO SERÃO FEITOS !!!!!!
+
+                    //*imprimindo na horizontal
+                    //e.Graphics.DrawString("Texto", letra, cor, new Point(100, 100));
+
+                    //*sabendo as dimensoes que essa frase vai ocupar no papel
+                    string frase = "Essa frase serve para teste";
+                    SizeF dimensao = e.Graphics.MeasureString(frase, letra);
+
+                    //*para mostrar as dimensoes da frase "Essa frase serve para teste"
+                    //MessageBox.Show(dimensao.Width.ToString() + " x " + dimensao.Height.ToString());
+
+                    //*criando o paragrafo entre as linhas de 5pixel
+                    e.Graphics.DrawString(frase, letra, cor, new Point(100, y));
+                    y += Convert.ToInt32(dimensao.Height) + 5;
+                    e.Graphics.DrawString(frase, letra, cor, new Point(100, y));
+                    y += Convert.ToInt32(dimensao.Height) + 5;
+                    e.Graphics.DrawString(frase, letra, cor, new Point(100, y));
+                    y += Convert.ToInt32(dimensao.Height) + 5;
+                    e.Graphics.DrawString(frase, letra, cor, new Point(100, y));
+                    y += Convert.ToInt32(dimensao.Height) + 5;
+                    e.Graphics.DrawString(frase, letra, cor, new Point(100, y));
+                    y += Convert.ToInt32(dimensao.Height) + 5;
+                    e.Graphics.DrawString(frase, letra, cor, new Point(100, y));
+                    y += Convert.ToInt32(dimensao.Height) + 5;
+                    e.Graphics.DrawString(frase, letra, cor, new Point(100, y));
+                    //=eu tirei o ulimo y += Convert.ToInt32(dimensao.Height) + 5;
+                    //=para colocar ali em baixo \/
+
+                    //*desenhar linha na vertical (uma linha vermelha desenhada na frente das frases)
+                    //*mesmo alterando o tamanho da letra a linha se ajusta sozinha
+                    e.Graphics.DrawLine(new Pen(Color.Red, 2),
+                                        new Point(100 + (int)dimensao.Width, 100),
+                                        new Point(100 + (int)dimensao.Width,
+                                        y + (int)dimensao.Height));
+                                                                          
+
+
+                }
+
+            }
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //*PrintPreViweControl
+            //*avança para a proxima pagina 
+            //if (pagina == paginas_criadas) return;
+            //pagina++;
+            //visualizar.StartPage = pagina;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //*PrintPreViweControl
+            //*volta para a pagina anterior
+            //if (pagina == 0) return;
+            //pagina--;
+            //visualizar.StartPage = pagina;
+        }
+    }
+}
