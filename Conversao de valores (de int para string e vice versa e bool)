@@ -1,0 +1,194 @@
+Convertendo valores de int para string, de string para int e valores booleanos (bool)
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+
+namespace ValoresNumericos
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //*observação importante 
+            //*ToString = Para texto, ou seja transformar um numero em texto para ser apresentado em uma tabela etc..
+        }
+
+        private void btn_executar_Click(object sender, EventArgs e)
+        {
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            //*quando coloca um texto de string antes do "valor" não precisa converter o "valor" .ToString
+            //int valor = 10;
+            //label_resultado.Text = "O valor é :" + valor; //*com o texto de string
+            //label_resultado.Text = valor.ToString(); //*sem o texto de string
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@      
+
+            //-----------------------------------------------
+
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            //*coloque int ou byte ou long e um ponto exemplo "long." vai aparecer MaxValue e MinValue para saber o maximo e minimo que pode ser usado
+
+            //*byte 8bits (numero inteiro) só aceita valores positivos
+            //byte valor2 = 10;
+
+            //*int 32bits (numero inteiro) aceita positivo e negativo
+            //int valor = 10; 
+            //uint novo_valor = 0; //*só aceita numero positivo (ele tem o dobro de valor do int)
+
+
+            //*long 64bits(numero inteiro) aceita positivos e negativos
+            //long valor1 = 10;
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+            //-----------------------------------------------
+
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            //*para converter int em string para por os numeros na textbox
+            //*olhe que o int é 32bits se fosse long seria convert.toInto64
+
+            //*primeiro exemplo de converter int para string
+            //int p1 = Convert.ToInt32(text1.Text);
+            //int p2 = Convert.ToInt32(text2.Text);
+            //int resultado = p1 + p2;
+
+            //*segundo exemplo de converter int para string
+            //int p1 = int.Parse(text1.Text);
+            //int p2 = int.Parse(text2.Text);
+            //int resultado = p1 + p2;
+
+            //*Parse tenta fazer a conversao e ponto final, se nao conseguir gera erro
+            //*TryParse metodo boleano que se nao conseguir converter vai assumir o numero 0 evitando que a aplicação crashe
+
+            //*tryparse é mais seguro e melhor !!
+            //int p1 = 0;
+            //int p2 = 0;
+            //int.TryParse(text1.Text, out p1);
+            //int.TryParse(text2.Text, out p2);
+            //int resultado = p1 + p2;
+
+
+            //label_resultado.Text = resultado.ToString();
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+            //-----------------------------------------------
+
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            //*valores com casas decimais
+            //*onde são separados com "." ou ","
+
+            //double valor = 1.5; //*repare que nao posso por 1,5 (mas quando inicar o programa ele nao vai aparecer 1.5 e sim 1,5)
+            //no codigo sempre vai ser 1.5, o sistema operacional vai fazer com que apresente como "." ou "," dependendo da região
+
+            //double valor1 = 1.345;
+
+            //double resultado = valor1;
+
+            //label_resultado.Text = resultado.ToString("0.0");
+            /* para que apareça o numero de casa decimais 
+             *que voce quer é só colocar "0,00" ou "0,0" 
+             *etc.. dentro do ToString();
+             *repare que ele sempre vai arredondar para cima
+             *exemplo se eu colocar 1.31 ele vai aparecer 1.3
+             *mas se eu colocar 1.35 ele vai arredondar para 1.4
+             *ou seja ele sempre vai arredondar para mais.
+             */
+
+            //-----------------------------------------------
+            //double valor1 = 1.55;
+            //double resultado = Math.Round(valor1);
+            //*Math.Round(valor1) = arredonda para um numero inteiro (1.4 vai aprecer 1, 1.5 vai aparecer 2)
+            //*Math.Round(valor1,1) = apresenta com 1 casa decimal ou seja 1,5, porém se tiver 1.55, vai arredondar para 1.56!
+            //*sempre arredonda para cima
+
+            //double valor2 = 1.9;
+            //double resultado2 = Math.Floor(valor2);
+            //*remove as casas decimais e faz um numro inteiro, ou seja 1.9 vai ser arredondado para 1
+
+            //double valor3 = 1.9;
+            //double resultado3 = Math.Ceiling(valor3);
+            //*Ceiling arredonda para cima ou seja 1.9 arredonda para 2
+            //*se eu tiver 101.1 vai arredondar para 102
+
+
+            //label_resultado.Text = resultado.ToString();
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+            //-----------------------------------------------
+
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            //*convertendo string em int
+
+            //*exemplo 1
+            //string valor_str = "123";
+            //int valor = int.Parse(valor_str);
+
+            //*exemplo 2
+            //string valor_str = "123";
+            //int valor = Convert.ToInt32(valor_str);
+
+            //*Data
+            //DateTime data = Convert.ToDateTime();
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+            //-----------------------------------------------
+
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            //*convertendo valor booleano
+
+            //*bool 0 = false
+            //*bool 1 = verdadeiro
+
+            //*essa conversao para boleano qualquer numero que nao seja 1 ou 0 sera interpertado como True
+            //int v = 1;
+            //bool valor = Convert.ToBoolean(v);
+
+            //label_resultado.Text = valor.ToString();
+
+            //-----------------------------------------------
+            /*exemplo imagine 3 opções de setup
+             * apresentar data
+             * apresentar hora
+             * apresentar data de nascimento
+             * ....
+            */
+
+            /*e imagine que iria ficar assim
+             * true
+             * false
+             * true
+             * ....
+            */
+
+            /*porém com a conversão posso colocar 0 e 1
+             * 1
+             * 0
+             * 1
+             * .....
+            */
+
+            string config = "101"; //* 101 tirado ali de cima
+            bool opcao = Convert.ToBoolean(config[0]); //*1
+            bool opcao2 = Convert.ToBoolean(config[1]);//*0
+            bool opcao3 = Convert.ToBoolean(config[2]);//*1
+            //*os valores em 01010101 ou 101 como fiz acima ao invez de True ou False
+            //*é mais seguro pois se for um txt pode ser lido por qualquer um e alterado
+            //*se tiver 0101010 ja fica mais dificil da pessoa alterar pois nao vai saber o que é 
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        }
+    }
+}
