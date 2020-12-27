@@ -1,0 +1,138 @@
+Como enviar email do programa para alguma pessoa
+podemos utilizar formatação html para escrever a mensagem do email
+
+Recordando: Environment.NewLine = quebra de linha igual = \n \r
+
+
+
+foi utilizado 2 botoes, 1 label, 1 textbox
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Net; //*permite ter acesso a um conjunto de funcionalidade em ligação em rede
+using System.Net.Mail; //*permite o envio de email
+using System.Text.RegularExpressions; //*para verificar se o email é valido 
+
+namespace EnviandoEmails
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            //*enviar email via c#
+            SmtpClient cliente = new SmtpClient();//* serve para enviar o email
+            NetworkCredential credenciais = new NetworkCredential(); //*login e senha do email(meu)
+            
+            //=============================================================
+
+            //*define as configurações do cliente(acima/\)
+            cliente.Host = "smtp.gmail.com"; //*host de envio
+            cliente.Port = 587; //*porta de envio
+            cliente.EnableSsl = true; //*encripitação da conexao(o gmail precisa !)
+            cliente.DeliveryMethod = SmtpDeliveryMethod.Network; //*modo de envio
+            cliente.UseDefaultCredentials = false; //*não vamos deixar o cliente definir as credenciais
+            
+            //=============================================================
+
+            //*definiar as credenciais de acesso ao email
+            credenciais.UserName = "vitorbrussolo"; //*conta gmail
+            credenciais.Password = "coloque a senha do email !"; //*senha gmail
+            
+            //=============================================================
+            //*OBSERVAÇÃO 1 !!!
+            //*para pegar as informações acima faça esse passo a passo
+            //*abra a conta gmail e va é configurações > ver todas configurações
+            //*clique em Encaminhamento de POP/IMAP
+            //*em Download POP clique no 3.configure seu cliente email > Instruções de configurações
+            //*vai abrir uma pagina que vai estar escrito "Servidor de recebimento de e-mails (POP)" e Servidor de envio de e-mails (SMTP)
+            //*smtp.gmail.com / pop.gmail.com é o host de recebimento e envio
+            //*Porta para TLS/STARTTLS: 587 / Porta: 995 é as porta de recebimento e envio
+
+            //*OBSERVAÇÃO 2
+            //*LEMBRE-SE DE ATIVAR ESSA CONFIGURAÇÃO = myaccount.google.com/lesssecureapps
+            //*ELA PERMITE QUE APLICATIVOS ACESSE SEU EMAIL PARA O ENVIO E RECEBIMENTO (O GOOGLE DIZ QUE NÃO É SEGURO)
+            //*SERÁ MELHOR CRIAR UM NOVO EMAIL PARA FAZER A FUNÇÃO DE ENVIO E RECEBIMENTO
+            //*hotmail não precisa!!
+            //=============================================================
+
+
+
+            //*define as credenciais no cliente 
+            cliente.Credentials = credenciais;
+            
+            //=============================================================
+
+            //*preparar a mensagem a enviar
+            MailMessage mensagem = new MailMessage();
+            mensagem.From = new MailAddress("vitorbrussolo@gmail.com"); //*email que vai enviar a mensagem
+            mensagem.Subject = "Titulo da mensagem"; //*titulo da mensagem no email
+            mensagem.IsBodyHtml = true; //*para que podemos enviar mensagem(no body) com formatação html (sublinhada, negrito, imagem, tudo que o html oferece etc..)
+            mensagem.Body = "<strong>CUIDADO:</strong> <br> <br> A sua conta de correio esta sendo usada por um programa externo "; //*texto do email 
+            mensagem.To.Add("aikavitin@hotmail.com"); //*endereço email que vai ser enviado
+            
+            //=============================================================
+
+            //*envio da mensagem de email
+            try
+            {
+                cliente.Send(mensagem);
+                MessageBox.Show("Email enviado com sucesso !");
+            }
+            catch(Exception Ex) //*exception ex serve só para nos programadores, não incluir no codigo final para o cliente
+            {
+                MessageBox.Show("Ocorreu um erro durante o envio do email" + Environment.NewLine + Environment.NewLine + Ex.Message);
+                //*escrever um ficheiro de texto com o erro, para que o cliente nos mande o ocorrido  que foi mostrado no ficheiro de texto para ser arrumado
+            }
+            //*Environment.NewLine = quebra de linha igual = \n \r
+            
+            //=============================================================
+
+
+        }
+
+        private void metroButton2_Click(object sender, EventArgs e)
+        {
+            //*verifica se o email é valido (button2 onde vai verificar se o email é valido)
+            string email = text_email.Text;
+
+            bool resultado = true;
+
+            //*verifica o endereço email (metodo usado abaixo regular expression)
+            Regex rex = new Regex(@"(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})"); //*conjunto de caracter que vao definir a expressão que vai ser possivel utlizar se determinado texto é ou não escrito como endereço email
+            if (rex.IsMatch(email) == false)
+                resultado = false;
+
+           
+           //=============================================================
+           
+            //*verifica se o email tem 2 ou mais "@@"
+            int num_arroba = 0;
+            foreach (char c in email)
+                if (c == '@')
+                    num_arroba++;
+                if (num_arroba != 1)
+                    resultado = false;
+
+            //*verifica se o email é correto
+            if (resultado == false)
+                MessageBox.Show("Email inválido.");
+
+
+
+
+
+        }
+    }
+}
