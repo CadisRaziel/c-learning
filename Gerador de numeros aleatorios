@@ -1,0 +1,73 @@
+aqui vamos ver um simples sistema de como gerar linhas de caracter aleatorias
+
+suponhamos que tenhamos 2 database com o id_cliente
+e precisamos unificar as duas (porém elas nunca se viram)
+para que não seja feita confução com os id_cliente e os nomes iguais do cliente
+podemos criar letras aleatorias e implementas em ambas database ou em uma só para gerar letras e diferencia-las
+
+usado 1 botao e 1 listbox.
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace NumerosAleatorios
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //*criando numeros aleatorios
+            //Random gerador = new Random();
+            //for(int i=0; i < 20; i++)
+            //{
+            //    int valor = gerador.Next(0,100); //*0 valor minimo - 100 valor maximo (porem vai gerar entre o "0" e o "99" o "100" não vai aparecer)
+            //    listBox1.Items.Add(valor.ToString());
+            //}
+
+            listBox1.Items.Clear();
+            for(int m = 0; m < 10; m++)
+            {
+                listBox1.Items.Add(CriarCodigo(m));
+            }
+
+
+
+        }
+
+        private string CriarCodigo(int seed, int numeroCaracter = 30)
+        {
+            //*metodo para criar letras aleatorias
+            StringBuilder str = new StringBuilder();
+            string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; //*numeroCaracter = 30
+            Random rdn = new Random(seed);
+            int n = rdn.Next();
+
+            for(int vezes = 0; vezes < numeroCaracter; vezes++)
+            {
+                Random r = new Random(DateTime.Now.Millisecond + seed + n); //*é preciso por o DateTime.Now.Millisecond para que seja alterado toda vez que clicar no botao
+                int x = r.Next(caracteres.Length);//*eu defino aqui o next como o numero maximo de caracter a ser sorteado que é o alfabeto que escrevi(ou seja ele vai pegar 1 caracter aleatorio ou seja sortear do 0 até a extenção do alfabeto criado)
+                str.Append(caracteres[x]); //*o indice [x] para que sempre seja aleatorio pois se eu definir [2] ele vai buscar só a letra "C"
+                n += 33;
+            }
+
+
+
+
+            //*devolve str
+            return str.ToString();            
+        }
+    }
+}
