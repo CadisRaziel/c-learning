@@ -1,0 +1,170 @@
+Sistema de permissoes
+ou seja, imagine que tem 4 botoes e que tem 3 usuarios
+usuario1 vai ter permissao para acessar os 4 botoes
+usuario2 vai ter permissao para acessar os 2 primeiros botoes
+usuarop3 vai ter permissao para acessar os 2 ultimos botoes
+
+aprendemos um simples codigo que coloca direto no visual studio mas não é recomendado, é melhor realizar na database
+
+usamos apenas 4 botoes !
+
+
+Criamos as permissoes no Program.cs o que não é recomendado
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace SistemaDePermissoes
+{
+    static class Program
+    {
+        /// <summary>
+        /// Ponto de entrada principal para o aplicativo.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+        }
+
+
+        //*não é aconselhavel criar aqui !! 
+        public static bool VerificarPermissao(cl_utilizador user, int opcao)
+        {
+            //*verifica se o utilizador tem permissao para entrar na funcionalidade
+            bool resultado = true;
+            if (user.permissoes[opcao] == '0')
+                resultado = false;
+
+            if(!resultado)
+            {
+                MessageBox.Show("Você não tem permissão para essa funcionalidade.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            return resultado;
+        }
+    }
+}
+
+//-------------------------------------------------------------------------------
+
+criamos uma classe para fazer o utilizador(usuario)
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SistemaDePermissoes
+{
+    class cl_utilizador
+    {
+        public string utilizador { get; set; }
+        public string password { get; set; }
+        public string permissoes { get; set; }
+
+        public cl_utilizador()
+        {
+            //* 1 = permissao / 0 = permissao negada
+            //*1111 = por conta dos 4 botoes
+            permissoes = "1111";
+        }
+            
+        
+    } 
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+e no form1 criamos toda arquitetura
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace SistemaDePermissoes
+{
+    public partial class Form1 : Form
+    {
+        //*criando os utilizadores(poderia ser feito em uma database)
+        cl_utilizador u1;
+        cl_utilizador u2;
+        cl_utilizador u3;
+
+
+        //*utilizador ativo
+        cl_utilizador user;
+
+
+
+        public Form1()
+        {
+            InitializeComponent();
+            //*defini os utilizadores 
+            u1 = new cl_utilizador()
+            { utilizador = "User1", password = "1234", permissoes = "1111" }; 
+
+            u2 = new cl_utilizador()
+            { utilizador = "User2", password = "123", permissoes = "1100"}; //*1100 permissao para o button 1 e button 2
+
+            u3 = new cl_utilizador()
+            { utilizador = "User3", password = "12", permissoes = "0011" }; //*0011 permissao para button 3 e button 4
+
+
+            //*define o utilizador ativo
+            user = u3;
+             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //*metodo de permissao criado no "Program.cs"
+
+            //*verificando a permissao
+            if (!Program.VerificarPermissao(user, 0)) //*program pois foi feito no "Program.Cs" (0 pois busca o 1111 ou seja o primeiro "1" é 0)
+                return;
+
+            MessageBox.Show("Opção 1");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (!Program.VerificarPermissao(user, 1)) //*program pois foi feito no "Program.Cs"
+                return;
+            MessageBox.Show("Opção 2");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (!Program.VerificarPermissao(user, 2)) //*program pois foi feito no "Program.Cs" 
+                return;
+            MessageBox.Show("Opção 3");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (!Program.VerificarPermissao(user, 3)) //*program pois foi feito no "Program.Cs" (0 pois busca o 1111 ou seja o primeiro "1" é 0)
+                return;
+            MessageBox.Show("Opção 4");
+        }
+    }
+    
+}
+
+
+
+
