@@ -1,0 +1,82 @@
+nesse exemplo mostramos como iniciar uma checkbox1 sem que ela faça o evento (o evento só sera feito depois que clicar e desclicar)
+vimos tambem como ativar ou desativar um evento, como no exemplo abaixo (esta no código tambem)
+//=============================================
+            //* uma outra forma de fazer em 3 linhas de código seria assim
+            //* eu desativo o evento Changed, informo que o checkbox vai iniciar marcado então vai ser true, porém não vai mostrar na label
+            //* depois eu ativo denovo o evento e ao clicar na label ele fica true ou false conforme ou clicando e dsclicando
+            checkBox1.CheckedChanged -= new EventHandler(checkBox1_CheckedChanged);
+            checkBox1.Checked = true;
+            checkBox1.CheckedChanged += new EventHandler(checkBox1_CheckedChanged);
+            //* -= eu desativo o evento
+            //* += eu ativo o evento 
+//=============================================
+
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace controle3
+{
+    public partial class Form1 : Form
+    {
+        bool executar = false;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            checkBox1.Checked = true;
+            //*sempre quando iniciar o programa a checkbox1 vai ficar marcada
+
+            executar = true;
+            //* para que ao executar o código e fazer a função abaixo \/ (não vai mostrar na label true)
+            //* (não vai mostrar na label true), mas se eu desmarcar e marcar novamente ai sim aparece e faz o evento "CheckedChanged"
+
+
+
+            //=============================================
+            //* uma outra forma de fazer em 3 linhas de código seria assim
+            //* eu desativo o evento Changed, informo que o checkbox vai iniciar marcado então vai ser true, porém não vai mostrar na label
+            //* depois eu ativo denovo o evento e ao clicar na label ele fica true ou false conforme ou clicando e dsclicando
+            checkBox1.CheckedChanged -= new EventHandler(checkBox1_CheckedChanged);
+            checkBox1.Checked = true;
+            checkBox1.CheckedChanged += new EventHandler(checkBox1_CheckedChanged);
+            //* -= eu desativo o evento
+            //* += eu ativo o evento 
+            //=============================================
+             
+        
+        
+        
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (executar == false) return; 
+            //*se codigo chegar até esse if e verificar que o "executar" é igual a falso
+            //*ela não vai executar o código abaixo
+            //*ou seja, mesmo no form1 estando como true ao iniciar o programa ela vai aparecer marcada como true
+            //*porém não vai mostrar na label o "true"
+
+
+
+            label1.Text = checkBox1.Checked.ToString();
+            //*apenas um exemplo para mostrar o true e false
+            //*colocamos o Tostring para aparecer na label1 escrtio true quando marcada e false quando desmarcada
+        }
+
+        
+    }
+}
