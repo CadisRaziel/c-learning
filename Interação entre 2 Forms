@@ -1,0 +1,87 @@
+Aqui faremos o seguinte
+imageine dois Forms, o Form1 e o Form2
+com isso queremos que ao clicar no botão do Form1 abra o Form2, porém no Form2 tera um botão e ao clicar nele ele vai alterar o Label e o Listbox do Form1
+
+
+veja no exemplo abaixo
+
+Form1 (usado 1 botão, 1 label, 1 listbox)
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Controle4
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form2 f = new Form2(this);
+            f.ShowDialog();
+        }
+    }
+}
+
+
+//============================================================================================================================================================
+
+Form2 (usado 1 botão)
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Controle4
+{
+    public partial class Form2 : Form
+    {
+        Form frm;
+        //*para criar a existencia do Form1
+        //*para que ao clicar no botão do Form2 o label do Form1 seja alterado
+
+        public Form2(Form frmativa)//*quando colocamos Form frmativa aqui no Form1 no objeto criado de Form2 é preciso por (this) no metodo
+        {
+            InitializeComponent();
+            frm = frmativa;
+            //*fazendo isso qualquer metodo da minha classe From2 vai saber da existencia de "Frm"
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frm.Controls["label1"].Text = "deu certo";
+            //*frm.controls vai acessar todos os controles (botoes, textbox, checkbox etc..) que estão no Form1
+            //*assim quando colocamos ["label1"] estamos chamando o nome do controle para poder dar a ele um valor
+
+
+
+            //*olhe como o listbox é um controle especifico (veja como é necessario fazer um cast colocando o Lisbox lista)
+            ListBox lista = (ListBox)frm.Controls["lista1"];
+            // ou posso fazer desta maneira
+            //* ListBox lista = Frm.Controls["lista1"] as ListBox;
+            //as duas maneiras tem o mesmo efeito
+            lista.Items.Add("Vitor");
+            lista.Items.Add("Brussolo");
+            lista.Items.Add("Zerbato");
+
+        
+        }
+    }
+}
