@@ -1,0 +1,12 @@
+Ao clicar no sair vai aparecer (Deseja realmente sair da aplicação? sim ou não?)
+
+private void btn_sair_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja sair da aplicação ?", "SAIR", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
+
+            //fehca
+            Application.Exit();
+        }
+        
+        
+        Environment.NewLine (lembrando que esse comando é uma nova linha(paragrafo, quebra de linha)
