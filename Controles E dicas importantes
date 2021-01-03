@@ -1,0 +1,121 @@
+OBSERVAÇÂO A SER CONSIDERADA = É MUITO IMPORTANTE SEMPRE CONFIGURAR AS PROPRIEDADES SEMPRE DE CADA CONTROLE PARA TER UM MELHOR "UI" INTERFACE DE USUARIO
+//----
+OBSERVAÇÃO A SER CONDIDERADA = MESMO QUE SE EU FIZER UMA ALTERAÇÃO DO TIPO TENHO UMA LABEL E QUERO MUDAR A COR, SE EU COLOCAR NAS PROPRIEDADES VAI TER O EFEITO QUE QUERO
+MAS SE EU FIZER O BACKGROUND DA LABEL VIA CODIGO E NAO PELAS PROPIEDADES VAI DAR NA MESMA(NAO AUMENTA A PERFORMACE APENAS AUMENTA A LINHA DE CODIGO E O EFEITO SERA O 
+MESMO)
+O MOTIVO DISSO É O SEGUINTE
+TODA FORM1 TEM UM CONSTRUTOR E DENTRO DELE VOCE VE O METODO (InitializeComponent())
+TANTO QUE VEMOS PUBLIC CLASS PARTIAL FORM1
+ESSE PARTIAL E A CLASSE QUE GUARDA ESSE METODO!!
+
+//=============================================
+
+DoubleBuffered = Para que as imagens não fiquem travando
+
+//=============================================
+
+*Se voce selecionar varios controles ao mesmo tempo as propriedades vai se modificar apresentando somente o que os controles tem em comum
+assim eles poderam ser alterados juntos no mesmo momento
+
+//=============================================
+
+*Anchor = se o formulario tiver a opção de ser redimensionado e voce colocar um botao ou algum outro controle ele vai se redimensionar junto
+mas se voce clicar no "Anchor" e clicar nas barras e adequar o botao voce vai ver que ele vai se adptar ao formulario e redimensionar junto
+basta testar para os controle e ver o melhor anchor para ele
+OBS: È FUNDAMENTAL CONFIGURAR O ANCHOR SEMPRE !!!!!!
+
+//=============================================
+
+*AutoEllipsis = quando voce tem um Form1 com uma dimensão e coloca um texto com uma dimensão que preencha todo form1 o autoellipsis vai adicionar
+um conjunto de reticencias(...) indicando que há mais textos a ser apresentado
+(pode ser usado nos controles como label etc...)
+
+//=============================================
+
+Solution explore = gerencia os projetos e permite ter varios projetos abertos ele é tipo um container
+Solution name
+Para adicionar um novo projeto clique com o botão direito em cima do icone roxo Solution, va é adicionar e coloque um novo ou um existente
+Para Iniciar o projeto que foi recentemente colocado (para testar ele) clique com o botão direito em seu nome e va em "depurar" ou "debug" se estiver em ingles e clique em "iniciar nova instancia"
+Pois sempre quando voce tiver mais de 1 projeto aberto e for iniciar o que sempre vai mostrar é o 1 projeto aberto o inicial.
+Ou para tornar um projeto como principal se tiver varios abertos é só clicar no nome dele com o botão direito e clicar na engrenagem "Definir como projeto de inicialização"
+Posso tambem abrir um outro ficheiro de icones, notas, classes fora do projeto principal, o de notas é mais interessante para sempre deixar anotado
+
+
+POR QUESTÃO DE ORGANIZAÇÃO COMO NO MVC É SEMPRE BOM CRIAR PASTAS PARA COLOCAR AS CLASSES(OBS NUNCA CRIE CLASSES DENTRO DA PASTA QUE FOR CRIADA COMO CLASSES)
+LEMBRE-SE SEMPRE QUE COLOCAR MAIS DE 1 PROJETO NA MESMA SOLUÇÃO ELE AUTOMATICAMENTE CRIA PASTAS DOS OUTROS PROJETOS DENTRO DO PROJETO PRINCIPAL
+
+//=============================================
+
+*Cursos = Escolhe um tipo de "Setinha" a ser apresentada como Seta de interrogação, Seta com o dedo apontando, Seta de impedimento etc....
+(sempre bom colocar em label's clicaveis)
+
+//=============================================
+
+FlatAppearence = Permite que ao realizar a alteração no Flatstyle coloque cor nas bordas e ao entrar e sair com o mouse de cima do botao ele muda de cor pois
+ele tem a opção do evento MouseDownBackColor e MouseOverBackcolor e a grossura da borda! 
+Sendo que o MouveOverBackColor que vai alterar a cor de ao colocar o cursor do mouse em cima do botão
+Sendo que o MouseDownBackColor que vai alterar a cor do botao na hora que ele ser clicado
+(Caso eu quiser colocar uma cor de fundo no botao ai eu terei que ir no BackColor e alterar)
+
+FlatStyle = Permite escolher o tipo de aspecto que o botao terá (muda o aspecto visual do botão em suas bordas)
+com isso selecionamos o Flatstyle "Flat" por exemplo e clicamos no FlatAppearence
+
+//=============================================
+
+Image = posso por uma imagem de fundo, sempre recomendado icones e fotos png
+ImagemAling = posiciono a imagem em algum lugar do botao ou outro controle
+
+//=============================================
+
+Margin = Se colocar 0 no "all" todos os botoes vao poder se encostar
+margin existe em quase todos os controles
+Posso fazer no label tambem, porém no label vai fazer com que o texto nao encoste nas bordas caso eu coloque "all" 10 por exemplo
+
+//=============================================
+ 
+Locked = fechado ou aberto, o locked = true vai aparecer um cadeado no botao ou seja nao permitir arrastar o botao pois ele vai estar bloqueado
+e mais usado para o beckend para que nao mude um botao de lugar sem querer (porém é travado somente para os movimentos, se eu aperta DELETE ele vai ser deletado)
+
+//=============================================
+
+Enabled = ativo ou inativo 
+tem uma função mais de runtime
+ou seja se o botao estiver enabled = false significa que esta inacesivel
+enabled = true esta acesivel
+
+//=============================================
+
+ToolTip = quando voce coloca o mouse em cima de algum botao ele aparece um balão apresentando uma informação
+ele tem 2 eventos o "Draw" e o Popup que não tem muita utilidade e não é muito usado
+Quando voce coloca o Tooltip e clica num botão dentro da form1 e ir nas propriedades desse botão vai aparecer o evento do Tooltip la "Tooltip on information"
+Se não colocar o tooltip ao clicar no botão e ir nas propriedades ele não vai ter a opção ToolTip on information
+cada controle consegue usar o mesmo Tooltip
+OBSERVAÇÃO É SEMPRE IMPORTANTE USAR O TOOLTIP
+Propiedades
+AutopopDelay = quanto tempo a caixa(balao de informação) vai ficar aberta
+Isballoon = para aparecer ou em um quadrado ou em um balão de quadrinho 																																							
+
+//=============================================
+Containers 
+São controles absurdamente ricos em conteudo
+
+
+Panel = cria um painel que divide o Form em partes exemplo o panel se colocar um panel ele vai ser uma Form que vai conter os controles dentro dela
+ou seja, imagine 6 radion buttons, ele vao se alterando entre si, mas se tiver 3 no Form1 e 3 dentro do panel eles vao se dividir em dois times
+ou seja os 3 de dentro do panel vao interagir entre eles mesmos e os outros 3 do form1 vao interagir entre eles mesmos.
+ 
+GroupBox = Cria um painel que contem um titulo e com bordas (frequentemente usado) tem a mesma função do painel
+
+TabControl = Coloca uma caixa de dialogo como tiulo tendo como colocar varios titulos(frequentemente usado) tambem cria bordas 
+
+SplitContainer = cria dois paines separados
+propriedades = spliterDistance, vai mudar a distancia do separador no meio
+propriedades = spliterIncrement o usuario pode redimensionar o separador no meio
+propriedades = spliterWidth permite aumentar o separador entre os dois panis
+propriedades = Orientation muda o separador para vertical ou horizontal
+propriedades = Dock altera o tamanho dos paines
+
+FlowLayoutPanel = semelhante ao panel alinha os controles dentro dele sistematicamente
+propriedades = FlorDirection vai definir a forma que os controles dentro do panel é organizado
+
+TableLayoutPanel = cria um painel dividido em 4 com separadores (é tipo uma tabela, da para ir colocando mais colunas e linhas)
