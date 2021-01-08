@@ -26,18 +26,3 @@ http://www.sys4soft.com/web/index.php/
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
-### 🖥📚 Learning C# with classes at cebrac with professor marcelo !
-
-I am a student at the cebrac school and I am learning from professor marcelo who is great just like João! | | Sou aluno da escola cebrac e estou aprendendo com o professor marcelo que é otimo assim como o João!
-
-
-https://www.cebrac.com.br/sao-jose-do-rio-preto
-
-
-
-<img src="https://user-images.githubusercontent.com/70340981/93710706-08e4ed00-fb1f-11ea-8154-d486c6b22f8a.png" width="250" height="120"/>
-
-
-
